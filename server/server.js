@@ -1,13 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");const app = express();// Bodyparser middleware
+const cors = require('cors');
+const bodyParser = require("body-parser");
+const app = express();// Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
     extended: false
   })
 );
 app.use(bodyParser.json());// DB Config
-const db = require("./config/key").mongoURI;// Connect to MongoDB
+app.use(cors);
+const db = require("./config/key").mongoURI;
 mongoose
   .connect(
     db,
