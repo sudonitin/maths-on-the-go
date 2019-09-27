@@ -14,13 +14,9 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
-    age:{
-        type:Number,
-        required:true
-    },
     date:{
         type:Date,
-        required:true
+        default:Date.now
     }
 })
 

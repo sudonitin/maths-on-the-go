@@ -28,19 +28,23 @@ router.post('/register',(req,res) => {
                 email:req.body.email,
                 password:req.body.password
             });
-            bcrypt.getSalt(10,(err,salt) => {
-                bcrypt.hash(newUser.password,salt,(err,hash)=>{
-                    if(err) throw err;
-                    newUser.password=hash;
-                    newUser.save().then(user => res.json(user)).catch(err => console.log(err));
-                })
-            })
+            //console.log(newUser);
+            bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser
+                  .save()
+                  .then(user => res.json(user))
+                  .catch(err => console.log(err));
+              });
+            });
         }
     })
 })
 
 router.post("/login", (req, res) => {
-    // Form validationconst { errors, isValid } = validateLoginInput(req.body);// Check validation
+    const { errors, isValid } = validateLoginInput(req.body);// Check validation
     if (!isValid) {
       return res.status(400).json(errors);
     }const email = req.body.email;
@@ -67,7 +71,7 @@ router.post("/login", (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer " + token
+                token: "Bearer:" + token
               });
             }
           );
