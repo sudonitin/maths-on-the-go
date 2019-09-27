@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {users,levels} = require('../connections/connections');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -20,4 +21,4 @@ const UserSchema = new Schema({
     }
 })
 
-module.exports = User = mongoose.model("users",UserSchema);
+module.exports = User = users.model("users",UserSchema);

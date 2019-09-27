@@ -23,24 +23,26 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 
-const db = require("./config/key").mongoURI;
+const db1 = require("./config/key").mongoUsersURI;
+//const db2 = require("./config/key").mongoLevelsURI
 mongoose
   .connect(
-    db,
+    db1,
     { useNewUrlParser: true }
   )
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
+
+
 app.use(function (req, res, next) {
-  console.log(req.body) // populated!
+  console.log(req.body) 
   next()
 })
 
 
 app.use('/api',users);
-app.get('/hello',function(req,res){
-  return res.send('Hello world');
-});
+const level1 = require('./routes/levels/levels1');
+app.use('/level1',level1);
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
