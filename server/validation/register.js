@@ -26,7 +26,7 @@ module.exports = function validateRegisterInput(data){
         errors.password2 = "confirm password is required";
     }
 
-    if(validator.isLength(data.password,{min:6})){
+    if(!validator.isLength(data.password,{min:6,max:undefined})){
         errors.password = "min length of the password should be 6";
     }
     if(!validator.equals(data.password,data.password2)){
