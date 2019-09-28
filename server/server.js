@@ -18,10 +18,10 @@ app.use(bodyParser.json());// DB Config
 app.use(cors());
 
 // Passport middleware
-app.use(passport.initialize());
+//app.use(passport.initialize());
   
 // Passport config
-require("./config/passport")(passport);
+//require("./config/passport")(passport);
 
 app.use(logger('dev'));
 const db = require("./config/key").mongoUsersURI;
