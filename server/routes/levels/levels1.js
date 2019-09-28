@@ -20,7 +20,7 @@ router.get('/addition',token.auth, (req,res)=> {
         var quesMap = {};
         questions.forEach(function(question){
             quesMap[question._id] = question;
-        })
+        });
         res.send(quesMap);
     })
 })
@@ -31,7 +31,7 @@ router.get('/substraction',token.auth,  (req,res)=> {
         var quesMap = {};
         questions.forEach(function(question){
             quesMap[question._id] = question;
-        })
+        });
         res.send(quesMap);
     })
 })
@@ -69,7 +69,7 @@ router.get('/multiplication',token.auth,(req,res)=> {
     })
 })
 
-router.get('/mix',token.auth, (req,res)=> {
+router.get('/mix',token.auth,(req,res)=> {
     Mix.find({},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
