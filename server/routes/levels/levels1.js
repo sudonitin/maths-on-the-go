@@ -17,7 +17,7 @@ const Mix = levels.model('mix',CategoriesSchema);
 
 
 router.get('/addition',token.auth, (req,res)=> {
-    Addition.findRandom({},{},{limit:13},(err,questions) => {
+    Addition.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -26,9 +26,9 @@ router.get('/addition',token.auth, (req,res)=> {
         res.send(quesMap);
     })
 })
-
+// dslkdmdkl
 router.get('/substraction',token.auth,  (req,res)=> {
-    Substraction.findRandom({},{},{limit:13},(err,questions) => {
+    Substraction.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -39,7 +39,7 @@ router.get('/substraction',token.auth,  (req,res)=> {
 })
 
 router.get('/additionsubstraction',token.auth,  (req,res)=> {
-    AdditionSubstraction.findRandom({},{},{limit:13},(err,questions) => {
+    AdditionSubstraction.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -50,7 +50,7 @@ router.get('/additionsubstraction',token.auth,  (req,res)=> {
 })
 
 router.get('/division',token.auth,(req,res)=> {
-    Division.findRandom({},{},{limit:13},(err,questions) => {
+    Division.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -61,7 +61,7 @@ router.get('/division',token.auth,(req,res)=> {
 })
 
 router.get('/multiplication',token.auth,(req,res)=> {
-    Multiplication.findRandom({},{},{limit:13},(err,questions) => {
+    Multiplication.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -72,7 +72,7 @@ router.get('/multiplication',token.auth,(req,res)=> {
 })
 
 router.get('/mix',token.auth,(req,res)=> {
-    Mix.findRandom({},{},{limit:13},(err,questions) => {
+    Mix.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
