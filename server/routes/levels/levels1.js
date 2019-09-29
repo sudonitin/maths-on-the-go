@@ -26,7 +26,7 @@ router.get('/addition',token.auth, (req,res)=> {
         res.send(quesMap);
     })
 })
-
+// dslkdmdkl
 router.get('/substraction',token.auth,  (req,res)=> {
     Substraction.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;

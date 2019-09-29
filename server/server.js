@@ -37,5 +37,6 @@ mongoose
 app.use('/api',users);
 const level1 = require('./routes/levels/levels1');
 app.use('/level1',level1);
-
+const update = require('./routes/updatescore/update');
+app.use('/update',update);
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
