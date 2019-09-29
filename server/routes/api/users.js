@@ -38,8 +38,7 @@ router.post('/register',(req,res) => {
                   .save()
                   .then(user => {
                     const payload = {
-                      id:user.id,
-                      name:user.name
+                      email:user.email
                     };
                     jwt.sign(payload,
                       keys.secretOrKey,
