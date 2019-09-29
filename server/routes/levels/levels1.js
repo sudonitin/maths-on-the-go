@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
 const CategoriesSchema = require('../../models/Categories');
+CategoriesSchema.plugin(random);
 const {users,levels} = require('../../connections/connections');
 const token = require('../../token/token');
 
@@ -15,7 +17,7 @@ const Mix = levels.model('mix',CategoriesSchema);
 
 
 router.get('/addition',token.auth, (req,res)=> {
-    Addition.find({},(err,questions) => {
+    Addition.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -26,7 +28,7 @@ router.get('/addition',token.auth, (req,res)=> {
 })
 
 router.get('/substraction',token.auth,  (req,res)=> {
-    Substraction.find({},(err,questions) => {
+    Substraction.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -37,7 +39,7 @@ router.get('/substraction',token.auth,  (req,res)=> {
 })
 
 router.get('/additionsubstraction',token.auth,  (req,res)=> {
-    AdditionSubstraction.find({},(err,questions) => {
+    AdditionSubstraction.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -48,7 +50,7 @@ router.get('/additionsubstraction',token.auth,  (req,res)=> {
 })
 
 router.get('/division',token.auth,(req,res)=> {
-    Division.find({},(err,questions) => {
+    Division.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -59,7 +61,7 @@ router.get('/division',token.auth,(req,res)=> {
 })
 
 router.get('/multiplication',token.auth,(req,res)=> {
-    Multiplication.find({},(err,questions) => {
+    Multiplication.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -70,7 +72,7 @@ router.get('/multiplication',token.auth,(req,res)=> {
 })
 
 router.get('/mix',token.auth,(req,res)=> {
-    Mix.find({},(err,questions) => {
+    Mix.findRandom({},{},{limit:13},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
