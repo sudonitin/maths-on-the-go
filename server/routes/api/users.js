@@ -8,6 +8,7 @@ const validateRegisterInput = require('../../validation/register')
 const validateLoginInput = require('../../validation/login');
 
 const User = require('../../models/User')
+const {users,levels} = require('../../connections/connections')
 
 //Pull the errors and isValid variables from our validateRegisterInput(req.body) function and check input validation
 
@@ -70,7 +71,7 @@ router.post("/login", (req, res) => {
       return res.status(400).json(errors);
     }const email = req.body.email;
     const password = req.body.password;// Find user by email
-    User.findOne({ email }).then(user => {
+    users.collection('users').findOne({ email }).then(user => {
       // Check if user exists
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
