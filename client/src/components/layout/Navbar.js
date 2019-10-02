@@ -1,20 +1,18 @@
 import React,{ Component } from 'react';
+import M from "materialize-css/dist/js/materialize.min.js";
 import { Link } from 'react-router-dom';
-import $ from 'jquery';
-import M from 'materialize-css';
+import 'materialize-css/dist/css/materialize.min.css';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 
 class Navbar extends Component{
-  constructor(){
-    super();
-    this.M = window.M;
-  }
+  
   componentDidMount(){
-    M.AutoInit();
-    $(document).ready(function(){
-      $('.sidenav').this.M.Sidenav();
-    })
+    var elem = document.querySelector(".sidenav");
+        var instance = M.Sidenav.init(elem, {
+            edge: "left",
+            inDuration: 250
+        });
   }
   render(){
     return (
