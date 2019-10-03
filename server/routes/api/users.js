@@ -108,3 +108,5 @@ router.post("/login", (req, res) => {
   });
 
 module.exports = router;
+
+// Bearer eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbGRpQGN2LmNvIiwiaWF0IjoxNTcwMDg0NDQyLCJleHAiOjE1NzAyNTcyNDJ9.p3NWtFbyQPCxMPz_XKCiPs10sW2akA3r-pUtVCuCnTOzcs1XDYSVkOR5ZZmEyVy1

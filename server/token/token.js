@@ -53,15 +53,15 @@ module.exports = {
                     return res.status(401).json({succes:false,message:'error occured'})
                 }
                 else{
-                    console.log(decoded);
-                    if(decoded.email==req.body.email){
+                    // console.log(decoded);
+                    // if(decoded.email==req.body.email){
                         req.decoded = decoded;
                         req.token = token;
                         next();
-                    }
-                    else{
-                        return res.status(401).json({succes:false,message:'invalid token'})
-                    }
+                    // // }
+                    // else{
+                    //     return res.status(401).json({succes:false,message:'invalid token'})
+                    // }
                     
                 }
             })
