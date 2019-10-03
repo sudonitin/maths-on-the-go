@@ -39,6 +39,6 @@ app.use('/level1',level1);
 const update = require('./routes/updatescore/update');
 app.use('/update',update);
 const tricks = require('./routes/tricks/mathtricks');
-app.use('tricks/',tricks);
-console.log("outside tricks");
+app.use('/tricks',tricks);
+//console.log("outside tricks");
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

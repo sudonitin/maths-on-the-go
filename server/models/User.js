@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {users,levels} = require('../connections/connections');
+const {users,levels,tricks} = require('../connections/connections');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({

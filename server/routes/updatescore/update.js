@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const token = require('../../token/token');
-const User = require('../../models/User');
-const {users,levels} = require('../../connections/connections');
+const {users,levels,tricks} = require('../../connections/connections');
 
 
 router.post('/upscore', token.auth_user, (req,res)=> {
