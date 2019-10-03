@@ -17,7 +17,7 @@ class Navbar extends Component{
   render(){
     return (
       <div>
-        <nav className="nav-wrapper indigo">
+        <nav className="nav-wrapper indigo fixed">
           <div className="container">
             <Link className="brand-logo">MTG</Link>
             <Link className="sidenav-trigger" data-target="mobile-links"><i className="material-icons">menu</i></Link>
