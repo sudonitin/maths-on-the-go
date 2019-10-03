@@ -1,22 +1,19 @@
-import React,{ Component } from 'react';
-import './App.css';
-import { Router,Switch,Route } from 'react-router-dom';
-import Navbar from '../src/components/layout/Navbar';
-import FormPage from './components/sign_in_out/login';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-
+import Navbar from "./components/layout/Navbar";
+import Register from "./components/sign_in_out/Register";
+import Login from "./components/sign_in_out/Login";
 class App extends Component {
-  render(){
-    return(
-      
-      <div className="app">
-        <Navbar/>
-        <FormPage />
-        
-      </div>
-      
-    )
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+        </div>
+      </Router>
+    );
   }
-}
-
-export default App;
+}export default App;
