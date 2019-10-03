@@ -12,12 +12,13 @@ const trick = tricks.model('tricks',TricksSchema);
 
 
 router.get('/trick',token.auth, (req,res)=> {
-    console.log("inside tricks");
+    
     trick.findRandom({},{},{limit:1},(err,questions) => {
-        if(err) throw err;
+        console.log("inside tricks");
+        // if(err) throw err;
         var quesMap = {};
-        questions.forEach(function(question){
-            quesMap[question._id] = question;
+        questions.forEach(function(matrick){
+            quesMap[matrick._id] = matrick;
         });
         res.send(quesMap);
     })
