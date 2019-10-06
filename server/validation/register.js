@@ -30,7 +30,7 @@ module.exports = function validateRegisterInput(data){
         errors.password = "min length of the password should be 6";
     }
     if(!validator.equals(data.password,data.password2)){
-        errors.password = "passwords do not match"
+        errors.password2 = "passwords do not match"
     }
 
     return {

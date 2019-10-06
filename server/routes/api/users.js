@@ -50,6 +50,7 @@ router.post('/register',(req,res) => {
                         if(err) return res.json(err);
                         else {
                           res.json({
+                            success:true,
                             user,
                             token:"Bearer "+token
                           })

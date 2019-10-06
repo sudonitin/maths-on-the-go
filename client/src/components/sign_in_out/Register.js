@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 class Register extends Component {
   constructor() {
     super();
@@ -15,13 +16,33 @@ class Register extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
   onSubmit = e => {
-    e.preventDefault();const newUser = {
+    e.preventDefault();
+    const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2
     };
     console.log(newUser);
+    axios.post(`${URL}/api/register`,newUser,{
+      headers:{"Content-Type": "application/json"}
+    })
+    .then(res => {
+      console.log(res);
+      if(res.data.success){
+        const token = res.data.token
+        //console.log(token);
+        localStorage.setItem('token',token);
+        localStorage.setItem('email',res.data.user.email);
+        this.props.history.push('/login');//redirect to home page 
+      }
+    })
+    .catch(err => {
+      this.setState({
+        errors:err.response.data
+      })
+      console.log(this.state.errors);
+    })
   };
   render() {
     const { errors } = this.state;
@@ -47,6 +68,7 @@ class Register extends Component {
                   type="text"
                 />
                 <label htmlFor="name">Name</label>
+                <span style={{color:"red"}}>{errors.name}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -57,6 +79,7 @@ class Register extends Component {
                   type="email"
                 />
                 <label htmlFor="email">Email</label>
+                <span style={{color:"red"}}>{errors.email}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -67,6 +90,7 @@ class Register extends Component {
                   type="password"
                 />
                 <label htmlFor="password">Password</label>
+                <span style={{color:"red"}}>{errors.password}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -77,6 +101,7 @@ class Register extends Component {
                   type="password"
                 />
                 <label htmlFor="password2">Confirm Password</label>
+                <span style={{color:"red"}}>{errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
