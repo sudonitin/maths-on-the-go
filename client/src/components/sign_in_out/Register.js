@@ -34,7 +34,7 @@ class Register extends Component {
         //console.log(token);
         localStorage.setItem('token',token);
         localStorage.setItem('email',res.data.user.email);
-        this.props.history.push('/login');//redirect to home page 
+        this.props.history.push('/');//redirect to home page 
       }
     })
     .catch(err => {
