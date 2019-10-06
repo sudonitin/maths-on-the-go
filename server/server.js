@@ -23,6 +23,12 @@ app.use(cors());
 //require("./config/passport")(passport);
 
 app.use(logger('dev'));
+
+app.use(function(req,res,next){
+  console.log(req.body);
+  next();
+})
+
 const db = require("./config/key").mongoUsersURI;
 
 mongoose

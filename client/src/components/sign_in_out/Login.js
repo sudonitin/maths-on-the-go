@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
+import axios from 'axios';
+import URL from '../../url';
+
 class Login extends Component {
   constructor() {
     super();
@@ -14,11 +17,34 @@ class Login extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
+    
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(userData);
+    //console.log(userData);
+    axios.post(`${URL}/api/login`,userData,{
+      headers:{"Content-Type": "application/json"}
+    })
+    .then(res => { 
+      console.log(res);
+      if(res.data.success){
+        const token = res.data.token
+        //console.log(token);
+        localStorage.setItem('token',token);
+        localStorage.setItem('email',res.data.user.email);
+        this.props.history.push('/');//redirect to home page 
+      }
+
+    })
+    .catch(err => {
+      //console.log(err.response.data);
+      this.setState({
+        errors:err.response.data
+      })
+      console.log(this.state.errors);
+    })
+    
   };
   render() {
     const { errors } = this.state;
@@ -45,6 +71,7 @@ class Login extends Component {
                   type="email"
                 />
                 <label htmlFor="email">Email</label>
+                <span style={{color:"red"}}>{errors.email}</span>
               </div>
               <div className="input-field col s12">
                 <input
@@ -55,6 +82,7 @@ class Login extends Component {
                   type="password"
                 />
                 <label htmlFor="password">Password</label>
+                <span style={{color:"red"}}>{errors.password}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
