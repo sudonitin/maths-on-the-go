@@ -19,7 +19,7 @@
     "validator": "^11.1.0"
   },
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.19.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
