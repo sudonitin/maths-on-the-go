@@ -6,7 +6,7 @@ function Level(props){
     let sc = props.score;
     if(parseInt(sc) == 0){
         return(
-            <div className="card-panel row zero">
+            <div className="card-panel row zero score">
                 <div className="col">
                     <span className={name}>
                         <h5>{props.content}</h5>
@@ -27,7 +27,7 @@ function Level(props){
     }
     else{
         return(
-            <div className="card-panel row">
+            <div className="card-panel row score">
                 <div className="col">
                     <span className={name}>
                         <h5>{props.content}</h5>

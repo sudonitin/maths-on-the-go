@@ -10,7 +10,7 @@
     }
 }
 
-.row:hover
+.score:hover
 {
     box-shadow: 0px 0px 10px #000000;
     z-index: 2;
