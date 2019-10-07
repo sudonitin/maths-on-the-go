@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import 'materialize-css/dist/css/materialize.min.css';
 import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
+const isEmpty = require('is-empty');
+
 
 class Navbar extends Component{
   
@@ -15,6 +17,7 @@ class Navbar extends Component{
         });
   }
   render(){
+    const links = isEmpty(JSON.parse(localStorage.getItem('user')))?<SignedOutLinks/>:<SignedInLinks/>;
     return (
       <div>
         <nav className="nav-wrapper blue fixed" style={{backgroundColor: "rgba(0,0,0,0)"}}>
@@ -22,18 +25,12 @@ class Navbar extends Component{
             <Link className="brand-logo">MTG</Link>
             <Link className="sidenav-trigger" data-target="mobile-links"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
-                <li><Link to='/'>About Us</Link></li>
-                <li><Link to='/'>Contact Us</Link></li>
-                <li><Link to='/login'>Login</Link></li>
-                <li><Link to='/register'>Register</Link></li>
+                {links}
               </ul>
           </div>
         </nav>
         <ul className="sidenav" id="mobile-links">
-          <li><Link to='/'>About Us</Link></li>
-          <li><Link to='/'>Contact Us</Link></li>
-          <li><Link to='/'>Login</Link></li>
-          <li><Link to='/'>Register</Link></li>
+          {links}
         </ul>
       </div>
     )

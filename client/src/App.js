@@ -12,6 +12,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App wrapper">
+          <Navbar />
           <Route exact path="/" component={HomePage}/>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />

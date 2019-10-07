@@ -24,6 +24,7 @@ const SlideR = styled.div`
 class Graph extends React.Component{
   
     render(){
+      //localStorage.clear();
       const user = JSON.parse(localStorage.getItem('user'));
       console.log(user);
       if(isEmpty(user)) return <Redirect to='/login'/>
