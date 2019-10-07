@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Link,Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 import axios from 'axios';
+import {setCurrentUser} from '../../actions'
+
 import URL from '../../url';
 
 class Login extends Component {
@@ -12,12 +15,16 @@ class Login extends Component {
       errors: {}
     };
   }
+
+  // componentDidMount(){
+  //   console.log(this.props.user);
+  // }
+
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
   onSubmit = e => {
     e.preventDefault();
-    
     const userData = {
       email: this.state.email,
       password: this.state.password
@@ -33,7 +40,10 @@ class Login extends Component {
         //console.log(token);
         localStorage.setItem('token',token);
         localStorage.setItem('email',res.data.user.email);
-        this.props.history.push('/');//redirect to home page 
+        //console.log(res.data.user);
+        this.props.setCurrentUser(res.data.user);
+        console.log(this.props);
+        this.props.history.push('/score');//redirect to home page
       }
 
     })
@@ -104,4 +114,21 @@ class Login extends Component {
       </div>
     );
   }
-}export default Login;
+}
+
+function mapStateToProps(state){
+  const {user} = state;  
+  //console.log(user);
+  return {user};
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    setCurrentUser:(user) => dispatch(setCurrentUser(user))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);

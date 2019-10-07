@@ -3,6 +3,7 @@ import "./graph.css";
 import Level from "./Level"
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
+import { connect } from 'react-redux';
 
 const slideLeft = keyframes`${slideInLeft}`;
 
@@ -18,18 +19,28 @@ const SlideR = styled.div`
 
 class Graph extends React.Component{
     render(){
+      const {user} = this.props;
         return (
             <div className="container">
                 <h2 className="yourScore">Your Progress!</h2>
-                <SlideL><Level content="Piece of Cake - Level 1" score="5" img="🍰" /></SlideL>
-                <SlideR><Level content="Grapes - Level 2" score="20" img="🍇" /></SlideR>
-                <SlideL><Level content="Banana - Level 3" score="50" img="🍌" /></SlideL>
-                <SlideR><Level content="Apple - Level 4" score="0" img="🍎" /></SlideR>
-                <SlideL><Level content="Watermelon - Level 5" score="0" img="🍉" /></SlideL>
-                <SlideR><Level content="Coconuts - Level 6" score="0" img="🥥" /></SlideR>
+                <SlideL><Level content="Piece of Cake - Level 1" score={user.level1} img="🍰" /></SlideL>
+                <SlideR><Level content="Grapes - Level 2" score={user.level2} img="🍇" /></SlideR>
+                <SlideL><Level content="Banana - Level 3" score={user.level3} img="🍌" /></SlideL>
+                <SlideR><Level content="Apple - Level 4" score={user.level4} img="🍎" /></SlideR>
+                <SlideL><Level content="Watermelon - Level 5" score={user.level5} img="🍉" /></SlideL>
+                <SlideR><Level content="Coconuts - Level 6" score={user.level6} img="🥥" /></SlideR>
             </div>
         )
     }
 }
-export default Graph;
+
+function mapStateToProps(state){
+  const {user} = state;  
+  //console.log(user);
+  return {user};
+}
+
+export default connect(
+  mapStateToProps
+)(Graph);
 
