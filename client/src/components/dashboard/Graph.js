@@ -35,6 +35,7 @@ class Graph extends React.Component{
   }
     render(){
       const {user} = this.state;
+
       console.log(user);
         return (
             <div className="container">
