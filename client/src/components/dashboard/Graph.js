@@ -4,7 +4,10 @@ import Level from "./Level"
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
 import { connect } from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import Login from "../sign_in_out/Login";
+
+const isEmpty = require('is-empty');
 
 const slideLeft = keyframes`${slideInLeft}`;
 
@@ -19,24 +22,11 @@ const SlideR = styled.div`
 `;
 
 class Graph extends React.Component{
-  constructor(){
-    super()
-    this.state = {
-      user:{}
-    }
-  }
-  componentDidMount(){
-    const user = localStorage.getItem('user');
-    //console.log(JSON.parse(user));
-    //console.log(JSON.parse(user))
-    this.setState({
-      user:JSON.parse(user)
-    })
-  }
+  
     render(){
-      const {user} = this.state;
-
+      const user = JSON.parse(localStorage.getItem('user'));
       console.log(user);
+      if(isEmpty(user)) return <Redirect to='/login'/>
         return (
             <div className="container">
                 <h2 className="yourScore">Your Progress!</h2>
