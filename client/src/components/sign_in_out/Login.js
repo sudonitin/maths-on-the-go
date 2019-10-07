@@ -36,11 +36,11 @@ class Login extends Component {
     .then(res => { 
       console.log(res);
       if(res.data.success){
-        const token = res.data.token
         //console.log(token);
-        localStorage.setItem('token',token);
-        localStorage.setItem('email',res.data.user.email);
+        localStorage.setItem('token',res.data.token);
+        localStorage.setItem('user',JSON.stringify(res.data.user));
         //console.log(res.data.user);
+        console.log(localStorage.getItem('user'));
         this.props.setCurrentUser(res.data.user);
         console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page

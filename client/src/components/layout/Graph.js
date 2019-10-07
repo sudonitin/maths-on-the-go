@@ -4,6 +4,7 @@ import Level from "./Level"
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
 import { connect } from 'react-redux';
+import Login from "../sign_in_out/Login";
 
 const slideLeft = keyframes`${slideInLeft}`;
 
@@ -18,8 +19,23 @@ const SlideR = styled.div`
 `;
 
 class Graph extends React.Component{
+  constructor(){
+    super()
+    this.state = {
+      user:{}
+    }
+  }
+  componentDidMount(){
+    const user = localStorage.getItem('user');
+    //console.log(JSON.parse(user));
+    //console.log(JSON.parse(user))
+    this.setState({
+      user:JSON.parse(user)
+    })
+  }
     render(){
-      const {user} = this.props;
+      const {user} = this.state;
+      console.log(user);
         return (
             <div className="container">
                 <h2 className="yourScore">Your Progress!</h2>
