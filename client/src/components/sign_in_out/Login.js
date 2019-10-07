@@ -43,7 +43,7 @@ class Login extends Component {
         //console.log(res.data.user);
         this.props.setCurrentUser(res.data.user);
         console.log(this.props);
-        this.props.history.push('/score');//redirect to home page
+        this.props.history.push('/dashboard');//redirect to home page
       }
 
     })
