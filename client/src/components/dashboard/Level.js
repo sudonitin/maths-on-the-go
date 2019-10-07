@@ -4,7 +4,7 @@ function Level(props){
     let name = props.content;
     name += " blue-text text-darken-2";
     let sc = props.score;
-    if(parseInt(sc) == 0){
+    if(parseInt(sc) == 0 && props.content != 'Piece of Cake - Level 1'){
         return(
             <div className="card-panel row zero score">
                 <div className="col">
