@@ -20,6 +20,7 @@ const SlideR = styled.div`
 class Graph extends React.Component{
     render(){
       const {user} = this.props;
+      console.log(user);
         return (
             <div className="container">
                 <h2 className="yourScore">Your Progress!</h2>
