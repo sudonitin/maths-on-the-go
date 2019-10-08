@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar";
 import Register from "./components/sign_in_out/Register";
 import Login from "./components/sign_in_out/Login";
 import Graph from "./components/dashboard/Graph";
+import Forgot from "./components/forgotPassword/forgotPassword";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Graph} />
+          <Route exact path="/forgot" component={Forgot} />
           <Footer />
         </div>
       </Router>

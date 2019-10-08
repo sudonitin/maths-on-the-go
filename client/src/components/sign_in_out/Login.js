@@ -60,10 +60,10 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div className="container">
-        <div style={{ marginTop: "4rem" }} className="row">
-          <div className="col s8 offset-s2">
+        <div style={{ marginTop: "4rem" }} className="row forms">
+          <div className="">
             
-            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+            <div className="col s12">
               <h4>
                 <b>Login</b>
               </h4>
@@ -94,13 +94,19 @@ class Login extends Component {
                 <label htmlFor="password">Password</label>
                 <span style={{color:"red"}}>{errors.password}</span>
               </div>
+              <div className="col s12">
+              <p className="grey-text text-darken-1">
+                <Link to="/forgot">Forgot password?</Link>
+              </p>
+              </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
                     width: "150px",
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
-                    marginTop: "1rem"
+                    marginTop: "1rem",
+                    marginBottom: "1rem"
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"

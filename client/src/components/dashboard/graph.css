@@ -55,3 +55,10 @@
     transform: translate(-50%, -50%);
     text-align: center;
 }
+
+@media only screen and (min-width: 800px) {
+    .forms{
+        width: 50%;
+        margin: auto;   
+    }
+}
