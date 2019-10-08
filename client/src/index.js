@@ -9,9 +9,10 @@ import rootReducer from './reducers';
 
 import * as serviceWorker from './serviceWorker';
 
+const middleware = [thunk]
 
-const store = createStore(rootReducer,
-    applyMiddleware(thunk)
+const store = createStore(rootReducer,{},
+    applyMiddleware(...middleware)
 );
 
 ReactDOM.render(

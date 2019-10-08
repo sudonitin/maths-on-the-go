@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {setCurrentUser} from '../../actions'
+import propTypes from 'prop-types';
+
 
 import URL from '../../url';
 
@@ -19,7 +21,9 @@ class Login extends Component {
   // componentDidMount(){
   //   console.log(this.props.user);
   // }
-
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -121,6 +125,12 @@ class Login extends Component {
     );
   }
 }
+
+
+Login.propTypes = {
+  user:propTypes.object.isRequired
+}
+
 
 function mapStateToProps(state){
   const {user} = state;  
