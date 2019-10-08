@@ -3,3 +3,7 @@ export const setCurrentUser = user => ({
     user
 })
  
+export const logout = () => dispatch =>{
+    localStorage.clear();
+    dispatch(setCurrentUser({}));
+}

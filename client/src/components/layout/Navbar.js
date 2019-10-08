@@ -8,7 +8,6 @@ const isEmpty = require('is-empty');
 
 
 class Navbar extends Component{
-  
   componentDidMount(){
     var elem = document.querySelector(".sidenav");
         var instance = M.Sidenav.init(elem, {
