@@ -6,8 +6,48 @@ import {setCurrentUser} from '../../actions'
 
 
 class Forgot extends React.Component{
+    constructor() {
+        super();
+        this.state = {
+          email: "",
+          errors: {},
+          success: false
+        };
+      }
     
+      // componentDidMount(){
+      //   console.log(this.props.user);
+      // }
+    
+      onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
+      };
+      onSubmit = e => {
+        e.preventDefault();
+        const userData = {
+          email: this.state.email,
+          password: this.state.password
+        };
+        //console.log(userData);
+        axios.post(`${URL}/forgot/check`,userData,{
+          headers:{"Content-Type": "application/json"}
+        })
+        .then(res => { 
+          console.log(res);
+          this.setState({success:true});
+        })
+        .catch(err => {
+          //console.log(err.response.data);
+          this.setState({success:false});
+          this.setState({
+            errors:err.response.data
+          })
+          console.log(this.state.errors);
+        })
+      };
     render(){
+        const { errors } = this.state;
+        const { success } = this.state;
         return(
             <div className="container">
                 <div style={{ marginTop: "4rem" }} className="row forms">
@@ -18,13 +58,18 @@ class Forgot extends React.Component{
                             Forgot <b>Password</b>
                         </h4>
                     </div>
-                    <form noValidate>
+                    <form noValidate onSubmit={this.onSubmit}>
                         <div className="input-field col s12">
                             <input
+                            onChange={this.onChange}
+                            value={this.state.email}
+                            error={errors.email}
                             id="email"
                             type="email"
                             />
                             <label htmlFor="email">Email</label>
+                            <span style={{color:"green",display:success?"block":"none"}}>Email sent to your registered account</span>
+                            <span style={{color:"red"}}>{errors.email}</span>
                         </div>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                             <button
