@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import axios from "axios";
 import { connect } from 'react-redux';
 import {setCurrentUser} from '../../actions'
@@ -52,6 +52,7 @@ class Register extends Component {
     })
   };
   render() {
+    if(this.props.isAuthenticated) return <Redirect to='/dashboard'/>
     const { errors } = this.state;
     return (
       <div className="container">
@@ -135,14 +136,16 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-  user:propTypes.object.isRequired
+  setCurrentUser:propTypes.func.isRequired,
+  user:propTypes.object.isRequired,
+  isAuthenticated:propTypes.object.isRequired
 }
 
 
 function mapStateToProps(state){
-  const {user} = state;  
+  const {user,isAuthenticated} = state;  
   //console.log(user);
-  return {user};
+  return {user,isAuthenticated};
 }
 
 function mapDispatchToProps(dispatch){
