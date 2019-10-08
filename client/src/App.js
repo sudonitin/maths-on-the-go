@@ -8,6 +8,7 @@ import Login from "./components/sign_in_out/Login";
 import Graph from "./components/dashboard/Graph";
 import Forgot from "./components/forgotPassword/forgotPassword";
 import Reset from "./components/forgotPassword/resetPassword";
+import Questions from './components/Questions/Questions'
 
 class App extends Component {
   render() {
@@ -20,7 +21,8 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Graph} />
           <Route exact path="/forgot" component={Forgot} />
-          <Route exact path="/reset/" component={Reset} />
+          <Route exact path="/reset/:token" component={Reset} />
+          <Route exact path="/:level/:category/questions" component={Questions}/>
           <Footer />
         </div>
       </Router>
