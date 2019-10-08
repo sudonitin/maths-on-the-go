@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+const nodemailer = require('nodemailer');
 const express = require('express');
 const router = express.Router();
 const validateForgotInput = require('../../validation/forgot');
@@ -16,7 +18,39 @@ router.post("/check", (req, res) => {
         return res.status(404).json({ email: "Email not found" });
       }// Check password
       else{
-          res.send("found ur email");
+          const token = crypto.randomBytes(20).toString('hex');
+          console.log(token);
+          // user.update({
+          //   resetPasswordToken : token,
+          //   resetPasswordExpires: Date.now() + 360000,
+          // });
+
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: `geminiautomobilesnerul@gmail.com`,
+              pass: `i like it`,
+            },
+          });
+
+          const mailOptions = {
+            from : 'Maths On the go',
+            to: `${email}`,
+            subject: `Reset Password link`,
+            text: `Use the below link to change your password\n` + `http://localhost:3000/reset/${token}\n\n` + `NOTE: This link expire in an hour`
+          };
+
+          transporter.sendMail(mailOptions, function(err, response) {
+            if (err){
+              console.error('there was an error ', err);
+            }
+            else{
+              console.log('the response is ', response);
+              res.status(200).json('recover mail sent');
+            }
+          })
+
+          // res.send("found ur email");
       }
     });
   });
