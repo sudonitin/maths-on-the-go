@@ -13,7 +13,7 @@ function Footer(){
               <p class="grey-text text-lighten-4">A fun game for all.</p>
             </div>
             <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Follow us on</h5>
+              <h5 class="white-text">Follow us</h5>
               
                 <a class="grey-text text-lighten-3" href="#!"><FontAwesomeIcon icon={faFacebook} size="2x" /> </a>
                 <a class="grey-text text-lighten-3" href="#!"><FontAwesomeIcon icon={faInstagram} size="2x" /> </a>
@@ -26,7 +26,8 @@ function Footer(){
         <div class="footer-copyright">
           <div class="container">
           © 2019 Copyright MTG
-          <a class="grey-text text-lighten-4 right" href="#!">Nitin &nbsp;</a>
+          <h6 class="white-text" style={{textAlign: "right"}}>Our Creators</h6>
+          <a class="grey-text text-lighten-4 right" href="#!">Nitin</a>
           <a class="grey-text text-lighten-4 right" href="#!">Reha| </a>
           </div>
         </div>
