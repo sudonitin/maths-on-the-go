@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
 import { connect } from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import propTypes from 'prop-types';
 import Login from "../sign_in_out/Login";
 
 const isEmpty = require('is-empty');
@@ -22,9 +23,9 @@ const SlideR = styled.div`
 `;
 
 class Graph extends React.Component{
-  
     render(){
       //localStorage.clear();
+      //console.log(this.props.user); 
       const user = JSON.parse(localStorage.getItem('user'));
       console.log(user);
       if(isEmpty(user)) return <Redirect to='/login'/>
@@ -42,9 +43,10 @@ class Graph extends React.Component{
     }
 }
 
+
 function mapStateToProps(state){
   const {user} = state;  
-  //console.log(user);
+  console.log(user);
   return {user};
 }
 
