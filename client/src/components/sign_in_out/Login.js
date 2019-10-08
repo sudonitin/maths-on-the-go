@@ -45,7 +45,7 @@ class Login extends Component {
         localStorage.setItem('user',JSON.stringify(res.data.user));
         //console.log(res.data.user);
         console.log(localStorage.getItem('user'));
-        this.props.setCurrentUser(res.data.user);
+        this.props.setCurrentUser(res.data.user,res.data.token);
         console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page
       }
@@ -140,7 +140,7 @@ function mapStateToProps(state){
 
 function mapDispatchToProps(dispatch){
   return {
-    setCurrentUser:(user) => dispatch(setCurrentUser(user))
+    setCurrentUser:(user,token) => dispatch(setCurrentUser(user,token))
   };
 }
 
