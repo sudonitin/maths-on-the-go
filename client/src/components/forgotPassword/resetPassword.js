@@ -19,6 +19,41 @@ class Reset extends React.Component{
       //   console.log(this.props.user);
       // }
     
+      async componentDidMount() {
+        console.log(this.props.match.params.token);
+        await axios.get("http://localhost:3000/reset", {
+            params: {
+                resetPasswordToken: this.props.match.params.token,
+            },
+        }).then(response => {
+            console.log(response);
+            if (response.data.message === 'password reset link a-ok'){
+                this.setState({
+                    username: response.data.username,
+                    update: false,
+                    isLoading: false,
+                    error: false,
+                });
+            }else{
+                this.setState({
+                    update: false,
+                    isLoading: false,
+                    error: false,
+                });
+            }
+        }).catch(error => {
+            console.log(error.data);
+        })
+    }
+      handleChange = e => {
+        this.setState({ [name]: e.target.value });
+      };
+      
+      updatePassword = e => {
+          e.preventDefault();
+          axios.put(`${URL}/reset/change`)
+      }
+
       onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
       };

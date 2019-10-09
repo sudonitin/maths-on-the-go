@@ -20,7 +20,7 @@ class App extends Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Graph} />
           <Route exact path="/forgot" component={Forgot} />
-          <Route exact path="/reset/" component={Reset} />
+          <Route exact path="/reset/:token" component={Reset} />
           <Footer />
         </div>
       </Router>

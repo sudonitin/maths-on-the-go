@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
 import axios from 'axios';
-import {setCurrentUser} from '../../actions'
 
 
 class Forgot extends React.Component{
+
     constructor() {
         super();
         this.state = {
@@ -15,36 +13,32 @@ class Forgot extends React.Component{
         };
       }
     
-      // componentDidMount(){
-      //   console.log(this.props.user);
-      // }
     
-      onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-      };
-      onSubmit = e => {
-        e.preventDefault();
-        const userData = {
-          email: this.state.email,
-          password: this.state.password
-        };
-        //console.log(userData);
-        axios.post(`${URL}/forgot/check`,userData,{
-          headers:{"Content-Type": "application/json"}
+    onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+    };
+    onSubmit = e => {
+    e.preventDefault();
+    const userData = {
+        email: this.state.email,
+    };
+    console.log(userData);
+    axios.post(`${URL}/forgot/check`,userData,{
+        headers:{"Content-Type": "application/json"}
+    })
+    .then(res => { 
+        console.log(res);
+        this.setState({success:true});
+    })
+    .catch(err => {
+        //console.log(err.response.data);
+        this.setState({success:false});
+        this.setState({
+        errors:err.response.data
         })
-        .then(res => { 
-          console.log(res);
-          this.setState({success:true});
-        })
-        .catch(err => {
-          //console.log(err.response.data);
-          this.setState({success:false});
-          this.setState({
-            errors:err.response.data
-          })
-          console.log(this.state.errors);
-        })
-      };
+        console.log(this.state.errors);
+    })
+    };
     render(){
         const { errors } = this.state;
         const { success } = this.state;

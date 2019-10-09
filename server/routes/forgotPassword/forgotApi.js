@@ -20,10 +20,8 @@ router.post("/check", (req, res) => {
       else{
           const token = crypto.randomBytes(20).toString('hex');
           console.log(token);
-          // user.update({
-          //   resetPasswordToken : token,
-          //   resetPasswordExpires: Date.now() + 360000,
-          // });
+          users.collection('users').updateMany({email: email}, {$set:{resetToken : token,
+            resetTokenTime: Date.now() + 360000}}, function(err,user){});
 
           const transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -49,10 +47,8 @@ router.post("/check", (req, res) => {
               res.status(200).json('recover mail sent');
             }
           })
-
-          // res.send("found ur email");
-      }
-    });
-  });
+        }
+      });
+});
 
 module.exports = router;
