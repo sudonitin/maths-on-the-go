@@ -28,16 +28,17 @@ class Graph extends React.Component{
       //console.log(this.props.user); 
       const user = JSON.parse(localStorage.getItem('user'));
       console.log(user);
+      console.log(parseInt(user.level2)<10);
       if(isEmpty(user)) return <Redirect to='/login'/>
         return (
             <div className="container">
                 <h2 className="yourScore">Your Progress!</h2>
                 <SlideL><Level content="Piece of Cake - Level 1" score={user.level1} img="🍰" /></SlideL>
-                <SlideR><Level content="Grapes - Level 2" score={user.level2} img="🍇" /></SlideR>
-                <SlideL><Level content="Banana - Level 3" score={user.level3} img="🍌" /></SlideL>
-                <SlideR><Level content="Apple - Level 4" score={user.level4} img="🍎" /></SlideR>
-                <SlideL><Level content="Watermelon - Level 5" score={user.level5} img="🍉" /></SlideL>
-                <SlideR><Level content="Coconuts - Level 6" score={user.level6} img="🥥" /></SlideR>
+                <SlideR><Level content="Grapes - Level 2" score={user.level2} locked={parseInt(user.level1)<10} img="🍇" /></SlideR>
+                <SlideL><Level content="Banana - Level 3" score={user.level3} locked={parseInt(user.level2)<50} img="🍌" /></SlideL>
+                <SlideR><Level content="Apple - Level 4" score={user.level4} locked={parseInt(user.level3)<100} img="🍎" /></SlideR>
+                <SlideL><Level content="Watermelon - Level 5" score={user.level5} locked={parseInt(user.level4)<250} img="🍉" /></SlideL>
+                <SlideR><Level content="Coconuts - Level 6" score={user.level6} locked={parseInt(user.level6)<500} img="🥥" /></SlideR>
             </div>
         )
     }
