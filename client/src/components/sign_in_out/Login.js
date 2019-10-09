@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import {setCurrentUser} from '../../actions'
 import propTypes from 'prop-types';
+import Loader from '../loader/Loader'
 
 
 import URL from '../../url';
