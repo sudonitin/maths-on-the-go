@@ -11,6 +11,7 @@ function Level(props){
                     <span className={name}>
                         <h5>{props.content}</h5>
                         <h6>Your Score : {props.score}</h6>
+                        <h6>Threshold : {props.threshold}</h6>
                     </span>
                 </div>
                 <div className="col fakeDiv"></div>
@@ -32,6 +33,7 @@ function Level(props){
                     <span className={name}>
                         <h5>{props.content}</h5>
                         <h6>Your Score : {props.score}</h6>
+                        <h6>Threshold : {props.threshold}</h6>
                     </span>
                 </div>
                 <div className="col fakeDiv"></div>
