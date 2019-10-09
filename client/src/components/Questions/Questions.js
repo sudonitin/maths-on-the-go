@@ -36,8 +36,31 @@ class Questions extends Component{
         const {questions} = this.state;
         return(
             <>
-            <h5>11+7</h5>
-            <input placeholder="Write your answer here" id="first_name" type="text" class="validate"/>
+            {
+                questions.map(question => {
+                    return (
+                        <>
+                        <center><h5>{question}</h5></center>
+                        <input placeholder="Write your answer here" id="first_name" type="text" class="validate"/>  
+                    </>  
+                        )
+                })
+            }
+
+            <button
+                  style={{
+                    width: "150px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem",
+                    marginBottom: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                  Submit
+                </button>
+            
             </>
         )
     }
