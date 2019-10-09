@@ -8,9 +8,29 @@ class Questions extends Component{
         this.state={
             loading:true,
             questions:[],
-            answers:[]
+            answers:[],
+            submittedAnswers:[]
         }
     }
+
+    handleAnswersChange = (index,event) => {
+        var answers = this.state.submittedAnswers.slice()
+        answers[index] = event.target.value
+        this.setState({
+            submittedAnswers:answers
+        })
+        //console.log(this.state.submittedAnswers)
+    }
+    
+    onSubmit = e => {
+        e.preventDefault();
+        var score = 0;
+        this.state.answers.map((answer,index) => {
+            if(this.state.submittedAnswers[index] && this.state.submittedAnswers[index]===answer) score=score+5
+        })
+        console.log(score)
+    }
+
     componentDidMount(){
         const {level,category} = this.props.match.params;
         axios.get(`${URL}/${level}/${category}`,axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
@@ -36,12 +56,18 @@ class Questions extends Component{
         const {questions} = this.state;
         return(
             <>
+            <form onSubmit={this.onSubmit}>
             {
-                questions.map(question => {
+                questions.map((question,index) => {
                     return (
                         <>
                         <center><h5>{question}</h5></center>
-                        <input placeholder="Write your answer here" id="first_name" type="text" class="validate"/>  
+                        <input placeholder="Write your answer here" 
+                        id={index} 
+                        type="text" 
+                        class="validate"
+                        onChange={this.handleAnswersChange.bind(this,index)}
+                        />  
                     </>  
                         )
                 })
@@ -60,7 +86,7 @@ class Questions extends Component{
                 >
                   Submit
                 </button>
-            
+            </form>
             </>
         )
     }
