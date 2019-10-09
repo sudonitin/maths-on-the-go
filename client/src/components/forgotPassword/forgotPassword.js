@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import Loader from '../loader/Loader';
 
 
 class Forgot extends React.Component{
@@ -9,7 +10,8 @@ class Forgot extends React.Component{
         this.state = {
           email: "",
           errors: {},
-          success: false
+          success: false,
+          loading:false
         };
       }
     
@@ -19,6 +21,9 @@ class Forgot extends React.Component{
     };
     onSubmit = e => {
     e.preventDefault();
+    this.setState({
+        loading:true
+    })
     const userData = {
         email: this.state.email,
     };
@@ -28,7 +33,7 @@ class Forgot extends React.Component{
     })
     .then(res => { 
         console.log(res);
-        this.setState({success:true});
+        this.setState({success:true,loading:false});
     })
     .catch(err => {
         //console.log(err.response.data);
@@ -40,8 +45,7 @@ class Forgot extends React.Component{
     })
     };
     render(){
-        const { errors } = this.state;
-        const { success } = this.state;
+        const { success,errors,loading } = this.state;
         return(
             <div className="container">
                 <div style={{ marginTop: "4rem" }} className="row forms">
@@ -62,6 +66,9 @@ class Forgot extends React.Component{
                             type="email"
                             />
                             <label htmlFor="email">Email</label>
+                            {
+                                loading ? <Loader /> : null
+                            }
                             <span style={{color:"green",display:success?"block":"none"}}>Email sent to your registered account</span>
                             <span style={{color:"red"}}>{errors.email}</span>
                         </div>

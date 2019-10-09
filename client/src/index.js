@@ -6,11 +6,12 @@ import {Provider} from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
 import {store,persistor} from './store'
+import Loader from './components/loader/Loader';
 
 
 ReactDOM.render(
 <Provider store={store}>
-<PersistGate loading={null} persistor={persistor}>
+<PersistGate loading={<Loader/>} persistor={persistor}>
     <App/>
 </PersistGate>
 </Provider>
