@@ -29,6 +29,19 @@ class Questions extends Component{
             if(this.state.submittedAnswers[index] && this.state.submittedAnswers[index]===answer) score=score+5
         })
         console.log(score)
+        axios.post(`${URL}/update/upscore`,{
+            email:JSON.parse(localStorage.getItem('user')).email,
+            level:this.props.match.params.level,
+            score
+        },axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
+            headers:{"Content-Type": "application/json"}
+          })
+          .then(res => {
+              console.log(res.data)
+          })
+          .catch(err => {
+              console.log(err.response.data)
+          })
     }
 
     componentDidMount(){
