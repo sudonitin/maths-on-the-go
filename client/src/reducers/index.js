@@ -4,7 +4,9 @@ const isEmpty = require('is-empty');
 
 const initialState = {
     user:{},
-    isAuthenticated:false
+    isAuthenticated:false,
+    level:'',
+    category:''
 }
 
 export default function(state = initialState,action){

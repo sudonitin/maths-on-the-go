@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import axios from 'axios';
 import {setCurrentUser} from '../../actions'
@@ -45,7 +45,7 @@ class Login extends Component {
         localStorage.setItem('user',JSON.stringify(res.data.user));
         //console.log(res.data.user);
         console.log(localStorage.getItem('user'));
-        this.props.setCurrentUser(res.data.user);
+        this.props.setCurrentUser(res.data.user,res.data.token);
         console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page
       }
@@ -61,6 +61,7 @@ class Login extends Component {
     
   };
   render() {
+    if(this.props.isAuthenticated) return <Redirect to='/dashboard'/>
     const { errors } = this.state;
     return (
       <div className="container">
@@ -128,19 +129,21 @@ class Login extends Component {
 
 
 Login.propTypes = {
-  user:propTypes.object.isRequired
+  setCurrentUser:propTypes.func.isRequired,
+  user:propTypes.object.isRequired,
+  isAuthenticated:propTypes.object.isRequired
 }
 
 
 function mapStateToProps(state){
-  const {user} = state;  
+  const {user,isAuthenticated} = state;  
   //console.log(user);
-  return {user};
+  return {user,isAuthenticated};
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    setCurrentUser:(user) => dispatch(setCurrentUser(user))
+    setCurrentUser:(user,token) => dispatch(setCurrentUser(user,token))
   };
 }
 

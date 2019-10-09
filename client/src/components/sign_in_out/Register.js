@@ -1,6 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 import axios from "axios";
+import { connect } from 'react-redux';
+import {setCurrentUser} from '../../actions'
+import propTypes from 'prop-types';
+
 class Register extends Component {
   constructor() {
     super();
@@ -33,8 +37,11 @@ class Register extends Component {
         const token = res.data.token
         //console.log(token);
         localStorage.setItem('token',token);
-        localStorage.setItem('email',res.data.user.email);
-        this.props.history.push('/');//redirect to home page 
+        localStorage.setItem('user',JSON.stringify(res.data.user));
+        console.log(localStorage.getItem('user'));
+        this.props.setCurrentUser(res.data.user,res.data.token);
+        console.log(this.props);
+        this.props.history.push('/dashboard');//redirect to home page 
       }
     })
     .catch(err => {
@@ -45,6 +52,7 @@ class Register extends Component {
     })
   };
   render() {
+    if(this.props.isAuthenticated) return <Redirect to='/dashboard'/>
     const { errors } = this.state;
     return (
       <div className="container">
@@ -125,4 +133,28 @@ class Register extends Component {
       </div>
     );
   }
-}export default Register;
+}
+
+Register.propTypes = {
+  setCurrentUser:propTypes.func.isRequired,
+  user:propTypes.object.isRequired,
+  isAuthenticated:propTypes.object.isRequired
+}
+
+
+function mapStateToProps(state){
+  const {user,isAuthenticated} = state;  
+  //console.log(user);
+  return {user,isAuthenticated};
+}
+
+function mapDispatchToProps(dispatch){
+  return {
+    setCurrentUser:(user,token) => dispatch(setCurrentUser(user,token))
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Register);
