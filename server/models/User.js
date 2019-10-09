@@ -45,9 +45,11 @@ const UserSchema = new Schema({
     },
     resetToken:{
         type:String,
+        default:""
     },
     resetTokenTime:{
-        type:Date
+        type:Number,
+        default:0
     }
 })
 

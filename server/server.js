@@ -50,5 +50,7 @@ const checkmail = require('./routes/forgotPassword/forgotApi');
 app.use('/forgot',checkmail);
 const changePass = require('./routes/forgotPassword/resetAPI');
 app.use('/reset',changePass);
+const tokenVerify = require("./routes/forgotPassword/tokenVerify");
+app.use('/verify',tokenVerify);
 //console.log("outside tricks");
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));

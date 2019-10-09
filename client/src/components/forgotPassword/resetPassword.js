@@ -6,83 +6,90 @@ import {setCurrentUser} from '../../actions'
 
 
 class Reset extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
           email: "",
+          password: "",
+          updated: false,
+          err: false,
           errors: {},
+          resetToken: this.props.match.params.token,
           success: false
         };
+        console.log(this.props.match.params.token);
       }
-    
-      // componentDidMount(){
-      //   console.log(this.props.user);
-      // }
-    
+
       async componentDidMount() {
         console.log(this.props.match.params.token);
-        await axios.get("http://localhost:3000/reset", {
-            params: {
-                resetPasswordToken: this.props.match.params.token,
-            },
-        }).then(response => {
-            console.log(response);
-            if (response.data.message === 'password reset link a-ok'){
-                this.setState({
-                    username: response.data.username,
-                    update: false,
-                    isLoading: false,
-                    error: false,
-                });
-            }else{
-                this.setState({
-                    update: false,
-                    isLoading: false,
-                    error: false,
-                });
-            }
-        }).catch(error => {
-            console.log(error.data);
+        await axios.post(`${URL}/verify/token`, {
+          resetToken:this.props.match.params.token
+        },{
+          headers:{"Content-Type": "application/json"}
         })
+        .then(response => {
+            console.log(response);
+            if (response.data.message === 'all ok'){
+                this.setState({
+                    email: response.data.email,
+                    updated: false,
+                    isLoading: false,
+                    err: false,
+                }); 
+            } else{
+                this.setState({
+                    updated: false,
+                    err: true,
+                });
+                alert('INVALID LINK!!!!');
+                this.props.history.push('/forgot')
+            }
+        }).catch(err => {
+            console.log(err.response.data);
+            alert('INVALID LINK!!!!');
+            this.props.history.push('/forgot')
+        });
     }
-      handleChange = e => {
-        this.setState({ [name]: e.target.value });
+      handleChange = event => {
+        this.setState({ [event.target.id]: event.target.value });
       };
       
       updatePassword = e => {
-          e.preventDefault();
-          axios.put(`${URL}/reset/change`)
+        e.preventDefault();
+          axios.put(`${URL}/reset/change`, {
+            email: this.state.email,
+            password: this.state.password
+          }, {
+            headers:{"Content-Type": "application/json"}
+          })
+          .then(response => {
+            console.log(response.data);
+            if(response.data.message === "updated"){
+              this.setState({
+                updated: true,
+                err: false
+              });
+              alert('password changed successfully!!!');
+              this.props.history.push('/login')
+
+            } else{
+              this.setState({
+                updated: false,
+                err: true
+              });
+              alert('INVALID LINK!!!!');
+              this.props.history.push('/forgot')
+            }
+          })
+          .catch(err => {
+            console.log(err.data)
+            alert('INVALID LINK!!!!');
+            this.props.history.push('/forgot')
+          })
       }
 
-      onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-      };
-      onSubmit = e => {
-        e.preventDefault();
-        const userData = {
-          email: this.state.email,
-          password: this.state.password
-        };
-        //console.log(userData);
-        axios.post(`${URL}/forgot/check`,userData,{
-          headers:{"Content-Type": "application/json"}
-        })
-        .then(res => { 
-          console.log(res);
-          this.setState({success:true});
-        })
-        .catch(err => {
-          //console.log(err.response.data);
-          this.setState({success:false});
-          this.setState({
-            errors:err.response.data
-          })
-          console.log(this.state.errors);
-        })
-      };
     render(){
-        const { errors } = this.state;
-        const { success } = this.state;
+        const { errors, success, updated } = this.state;
         return(
             <div className="container">
                 <div style={{ marginTop: "4rem" }} className="row forms">
@@ -93,18 +100,15 @@ class Reset extends React.Component{
                             Reset <b>Password</b>
                         </h4>
                     </div>
-                    <form noValidate onSubmit={this.onSubmit}>
+                    <form noValidate onSubmit={this.updatePassword}>
                         <div className="input-field col s12">
                             <input
-                            onChange={this.onChange}
-                            value={this.state.email}
-                            error={errors.email}
+                            onChange={ this.handleChange }
                             id="password"
                             type="password"
                             />
                             <label htmlFor="password">Password</label>
-                            <span style={{color:"green",display:success?"block":"none"}}>Password changed successfully</span>
-                            <span style={{color:"red"}}>{errors.email}</span>
+                            <span style={{color:"green",display:updated?"block":"none"}}>Password changed successfully</span>
                         </div>
                         <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                             <button

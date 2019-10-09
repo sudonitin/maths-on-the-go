@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const express = require('express');
 const router = express.Router();
 const validateForgotInput = require('../../validation/forgot');
-const {users,levels} = require('../../connections/connections')
+const {users} = require('../../connections/connections')
 
 
 router.post("/check", (req, res) => {
@@ -18,11 +18,12 @@ router.post("/check", (req, res) => {
         return res.status(404).json({ email: "Email not found" });
       }// Check password
       else{
-          const token = crypto.randomBytes(20).toString('hex');
+         const token = crypto.randomBytes(20).toString('hex');
           console.log(token);
           users.collection('users').updateMany({email: email}, {$set:{resetToken : token,
-            resetTokenTime: Date.now() + 360000}}, function(err,user){});
-
+            resetTokenTime: (Date.now() + 720000)}}, function(err,user){});
+            console.log("now ",Date.now());
+            console.log("inserted ",(Date.now()+720000));
           const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -35,7 +36,7 @@ router.post("/check", (req, res) => {
             from : 'Maths On the go',
             to: `${email}`,
             subject: `Reset Password link`,
-            text: `Use the below link to change your password\n` + `http://localhost:3000/reset/${token}\n\n` + `NOTE: This link expire in an hour`
+            text: `Use the below link to change your password\n` + `http://localhost:3000/reset/${token}\n\n` + `Do Not Share this link with anyone else.\n` + `NOTE: This link expire in an hour`
           };
 
           transporter.sendMail(mailOptions, function(err, response) {
@@ -46,7 +47,7 @@ router.post("/check", (req, res) => {
               console.log('the response is ', response);
               res.status(200).json('recover mail sent');
             }
-          })
+          });
         }
       });
 });
