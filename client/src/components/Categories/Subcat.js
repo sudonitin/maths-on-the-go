@@ -1,5 +1,4 @@
 import React from "react";
-import "./subcat.css";
 
 
 function Subcat(props){
