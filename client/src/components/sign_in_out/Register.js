@@ -34,6 +34,12 @@ class Register extends Component {
     .then(res => {
       console.log(res);
       if(res.data.success){
+        this.setState({
+          name:"",
+          email:"",
+          password:"",
+          password2:""
+        })
         const token = res.data.token
         //console.log(token);
         localStorage.setItem('token',token);

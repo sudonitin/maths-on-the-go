@@ -21,12 +21,13 @@ class Forgot extends React.Component{
     };
     onSubmit = e => {
     e.preventDefault();
-    this.setState({
-        loading:true
-    })
     const userData = {
         email: this.state.email,
     };
+    this.setState({
+        loading:true,
+        email:""
+    })
     console.log(userData);
     axios.post(`${URL}/forgot/check`,userData,{
         headers:{"Content-Type": "application/json"}

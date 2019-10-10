@@ -41,6 +41,10 @@ class Login extends Component {
       console.log(res);
       if(res.data.success){
         //console.log(token);
+        this.setState({
+          email:"",
+          password:""
+        })
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('user',JSON.stringify(res.data.user));
         //console.log(res.data.user);
