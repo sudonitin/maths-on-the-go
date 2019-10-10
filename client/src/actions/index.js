@@ -20,4 +20,5 @@ export const setLevel = (level) => ({
 export const logout = () => dispatch =>{
     localStorage.clear();
     dispatch(setCurrentUser({},null));
+    dispatch(setLevel(null));
 }
