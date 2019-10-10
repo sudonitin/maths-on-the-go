@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER} from '../actions/types';
+import {SET_CURRENT_USER,SET_LEVEL} from '../actions/types';
 const isEmpty = require('is-empty');
 
 
@@ -16,6 +16,12 @@ export default function(state = initialState,action){
             ...state,
             isAuthenticated:!isEmpty(action.user),
             user:action.user
+        }
+        case SET_LEVEL:
+        console.log(action.level);
+        return{
+            ...state,
+            level:action.level
         }
         default:
             return state;
