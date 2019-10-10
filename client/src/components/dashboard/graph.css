@@ -8,6 +8,11 @@
     .overlayText{
         font-size: 120%;
     }
+
+    .categories{
+        margin: 1.5% !important;
+        padding: 3% !important; 
+    }
 }
 
 .score:hover
@@ -60,5 +65,11 @@
     .forms{
         width: 50%;
         margin: auto;   
+    }
+
+    .categories{
+        margin-left:5% !important; 
+        text-align: center;
+        padding: 5% !important;
     }
 }
