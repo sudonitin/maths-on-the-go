@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,SET_LEVEL} from './types'
+import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY} from './types'
 import setAuthToken from '../components/setAuthToken';
 
 
@@ -15,6 +15,11 @@ export const setCurrentUser = (user,token) => dispatch => {
 export const setLevel = (level) => ({
     type:SET_LEVEL,
     level
+})
+
+export const setCategory = (category) => ({
+    type:SET_CATEGORY,
+    category
 })
 
 export const logout = () => dispatch =>{

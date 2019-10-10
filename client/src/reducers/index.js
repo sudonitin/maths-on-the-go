@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,SET_LEVEL} from '../actions/types';
+import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY} from '../actions/types';
 const isEmpty = require('is-empty');
 
 
@@ -22,6 +22,12 @@ export default function(state = initialState,action){
         return{
             ...state,
             level:action.level
+        }
+        case SET_CATEGORY:
+        console.log(action.category)
+        return{
+            ...state,
+            category:action.category
         }
         default:
             return state;
