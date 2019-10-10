@@ -2,21 +2,6 @@ import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCategory } from '../../actions';
-import Subcat from "./Subcat";
-import styled, { keyframes } from 'styled-components';
-import { slideInLeft,slideInRight } from 'react-animations';
-
-const slideLeft = keyframes`${slideInLeft}`;
-
-const SlideL = styled.div`
-  animation: 2s ${slideLeft};
-`;
-
-const slideRight = keyframes`${slideInRight}`;
-
-const SlideR = styled.div`
-  animation: 2s ${slideRight};
-`;
 
 /*listen category set karne use setCategory(categoryName) */
 
