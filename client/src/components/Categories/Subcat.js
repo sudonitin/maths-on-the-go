@@ -29,6 +29,7 @@ function mapDispatchToProps(dispatch){
     }
 }
 
+//withRouter since it is a nested component and we need history in this component
 export default withRouter(connect(
     null,
     mapDispatchToProps

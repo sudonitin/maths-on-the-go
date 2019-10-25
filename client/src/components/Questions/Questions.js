@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import URL from '../../url';
+import {connect} from 'react-redux'
 
 class Questions extends Component{
     constructor(){
@@ -45,8 +46,8 @@ class Questions extends Component{
     }
 
     componentDidMount(){
-        const {level,category} = this.props.match.params;
-        axios.get(`${URL}/${level}/${category}`,axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
+        const {level,category} = this.props;
+        axios.get(`${URL}/${level}/${category.toLowerCase()}`,axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
             headers:{"Content-Type": "application/json"}
           })
           .then(res => {
@@ -105,4 +106,12 @@ class Questions extends Component{
     }
 }
 
-export default Questions;
+const mapStateToProps = (state) => {
+    const {level,category} = state;
+    return {level,category};
+}
+
+export default connect(
+    mapStateToProps
+)
+(Questions);
