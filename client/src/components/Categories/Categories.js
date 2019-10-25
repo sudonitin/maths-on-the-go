@@ -1,10 +1,8 @@
 import React,{Component} from 'react';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCategory } from '../../actions';
 import Subcat from "./Subcat";
 
-/*listen category set karne use setCategory(categoryName) */
 
 class Categories extends Component{
     
@@ -27,7 +25,6 @@ class Categories extends Component{
         const {level} = this.getArr;
         if(this.props.level==null) return <Redirect to='/dashboard'/>
         return(
-            /* WRITE YOUR CODE HERE */
             <div className="container">
                 <h2 className="yourScore">{level[0]}</h2>
                 <div className="row">
@@ -50,13 +47,6 @@ function mapStateToProps(state){
     return {level}
 }
 
-function mapDispatchToProps(dispatch){
-    return {
-        setCategory:(category) => dispatch(setCategory(category))
-    }
-}
-
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    mapStateToProps
 )(Categories)

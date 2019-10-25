@@ -24,7 +24,7 @@ class App extends Component {
           <Route exact path="/forgot" component={Forgot} />
           <Route exact path="/reset/:token" component={Reset} />
           <Route exact path='/categories' component={Categories} />
-          <Route exact path="/:level/:category/questions" component={Questions}/>
+          <Route exact path="/questions" component={Questions}/>
           <Footer />
         </div>
       </Router>
