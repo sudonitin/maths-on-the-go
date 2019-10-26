@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import axios from 'axios';
 import URL from '../../url';
 import {connect} from 'react-redux'
+import { setCurrentUser } from '../../actions';
 
 class Questions extends Component{
     constructor(){
@@ -33,7 +34,7 @@ class Questions extends Component{
         console.log(score)
         axios.post(`${URL}/update/upscore`,{
             email:JSON.parse(localStorage.getItem('user')).email,
-            level:this.props.match.params.level,
+            level:this.props.level,
             score
         },axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
             headers:{"Content-Type": "application/json"}
@@ -41,7 +42,9 @@ class Questions extends Component{
           .then(res => {
               console.log(res.data.user.value)
               localStorage.setItem('user',JSON.stringify(res.data.user.value))
-              
+              console.log(localStorage.getItem('user'));
+              this.props.setCurrentUser(res.data.user.value,localStorage.getItem('token'))
+
           })
           .catch(err => {
               console.log(err.response.data)
@@ -71,7 +74,6 @@ class Questions extends Component{
     }
     render(){
         const {questions} = this.state;
-        console.log(questions);
         if(questions.length == 0) return <div>loading</div>
         else {
         return(
@@ -118,7 +120,14 @@ const mapStateToProps = (state) => {
     return {level,category,user};
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setCurrentUser : (user,token) => dispatch(setCurrentUser(user,token))
+    }
+}
+
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
 )
 (Questions);
