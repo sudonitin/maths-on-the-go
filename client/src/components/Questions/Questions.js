@@ -29,6 +29,7 @@ class Questions extends Component{
         this.state.answers.map((answer,index) => {
             if(this.state.submittedAnswers[index] && this.state.submittedAnswers[index]===answer) score=score+5
         })
+        score+=this.props.user[this.props.level]
         console.log(score)
         axios.post(`${URL}/update/upscore`,{
             email:JSON.parse(localStorage.getItem('user')).email,
@@ -38,7 +39,9 @@ class Questions extends Component{
             headers:{"Content-Type": "application/json"}
           })
           .then(res => {
-              console.log(res.data)
+              console.log(res.data.user.value)
+              localStorage.setItem('user',JSON.stringify(res.data.user.value))
+              
           })
           .catch(err => {
               console.log(err.response.data)
@@ -68,6 +71,9 @@ class Questions extends Component{
     }
     render(){
         const {questions} = this.state;
+        console.log(questions);
+        if(questions.length == 0) return <div>loading</div>
+        else {
         return(
             <>
             <form onSubmit={this.onSubmit}>
@@ -104,11 +110,12 @@ class Questions extends Component{
             </>
         )
     }
+    }
 }
 
 const mapStateToProps = (state) => {
-    const {level,category} = state;
-    return {level,category};
+    const {level,category,user} = state;
+    return {level,category,user};
 }
 
 export default connect(
