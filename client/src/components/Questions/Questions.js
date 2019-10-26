@@ -3,6 +3,7 @@ import axios from 'axios';
 import URL from '../../url';
 import {connect} from 'react-redux'
 import { setCurrentUser } from '../../actions';
+import {Redirect} from 'react-router-dom'
 
 class Questions extends Component{
     constructor(){
@@ -75,6 +76,7 @@ class Questions extends Component{
     render(){
         const {questions} = this.state;
         if(questions.length == 0) return <div>loading</div>
+        else if(!this.props.level || !this.props.category) return <Redirect to='/dashboard'/>
         else {
         return(
             <>
