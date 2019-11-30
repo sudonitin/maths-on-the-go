@@ -1,0 +1,10 @@
+::placeholder{
+    color: #000;
+    opacity: 0.4;
+}
+
+.sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+  }

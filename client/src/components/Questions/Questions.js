@@ -3,7 +3,8 @@ import axios from 'axios';
 import URL from '../../url';
 import {connect} from 'react-redux'
 import { setCurrentUser } from '../../actions';
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router-dom';
+import "./question.css";
 
 class Questions extends Component{
     constructor(){
@@ -12,9 +13,73 @@ class Questions extends Component{
             loading:true,
             questions:[],
             answers:[],
-            submittedAnswers:[]
-        }
+            submittedAnswers:[],
+            add: 0,
+            text: "" 
+        };
+        this.setCookie = this.setCookie.bind(this);
+        this.getCookie = this.getCookie.bind(this);
+        this.checkCookie = this.checkCookie.bind(this);
     }
+    
+    setCookie(cname,cvalue,exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+      
+      getCookie(cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return Number(c.substring(name.length, c.length));
+          }
+        }
+        return "";
+      }
+      
+      checkCookie() {
+        var user = this.getCookie("countDownTime");
+        if (user > (new Date().getTime())) {
+          var x = setInterval(() => {
+    
+            var now = new Date().getTime();
+              
+            var distance = user - now;
+              
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            this.setState({
+               text: "time left is "+seconds+"s"
+            });
+            if (distance < 0) {
+              clearInterval(x);
+              this.setState({
+                  text: "Time's Up"
+              });
+
+            }
+          }, 1000);
+    
+        }
+        else {  
+          if(user < (new Date().getTime())){
+            this.setState({
+                text: "Cookie expired, executing once again!"
+            });
+            setTimeout(function(){return true;},3000);
+            this.setCookie("countDownTime", (new Date().getTime()+60000), 30);
+            this.checkCookie();  
+          }
+        }
+      }
 
     handleAnswersChange = (index,event) => {
         var answers = this.state.submittedAnswers.slice()
@@ -24,6 +89,7 @@ class Questions extends Component{
         })
         //console.log(this.state.submittedAnswers)
     }
+    
     
     onSubmit = e => {
         e.preventDefault();
@@ -72,27 +138,35 @@ class Questions extends Component{
           .catch(err => {
               console.log(err.response.data);
           })
+          this.checkCookie();
     }
+
+
     render(){
         const {questions} = this.state;
+        if(this.state.text === "Time's Up") return <Redirect to='/categories'/>
         if(questions.length == 0) return <div>loading</div>
         else if(!this.props.level || !this.props.category) return <Redirect to='/dashboard'/>
         else {
+            
         return(
-            <>
-            <form onSubmit={this.onSubmit}>
+            <div className="container" >
+                <div className="card-panel row sticky" id="timer">
+                    <h5>{this.state.text}</h5>
+                </div>
+                <form onSubmit={this.onSubmit}>
             {
                 questions.map((question,index) => {
                     return (
-                        <>
-                        <center><h5>{question}</h5></center>
-                        <input placeholder="Write your answer here" 
-                        id={index} 
-                        type="text" 
-                        class="validate"
-                        onChange={this.handleAnswersChange.bind(this,index)}
-                        />  
-                    </>  
+                        <div className="card-panel row">
+                            <h5><span style={{fontWeight: "bold", color: "#4a148c"}}>(Q)</span> {question} = ?</h5>
+                            <input placeholder="Type your answer here" 
+                            id={index} 
+                            type="text" 
+                            class="validate"
+                            onChange={this.handleAnswersChange.bind(this,index)}
+                            />
+                        </div>  
                         )
                 })
             }
@@ -103,17 +177,20 @@ class Questions extends Component{
                     borderRadius: "3px",
                     letterSpacing: "1.5px",
                     marginTop: "1rem",
-                    marginBottom: "1rem"
+                    marginBottom: "1rem",
+                    fontWeight: "bold"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Submit
+                  className="waves-effect waves-light btn-large hoverable blue accent-3"
+                >Submit
                 </button>
             </form>
-            </>
+            </div>
         )
-    }
+
+       
+          
+        }
     }
 }
 
