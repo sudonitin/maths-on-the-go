@@ -1,12 +1,13 @@
 import React from "react";
+import "./loader.css";
 
 const SpinnerPage = () => {
   return (
-    <>
-      <div className="spinner-border text-info" role="status">
-        <span class="sr-only">Loading...</span>
+
+      <div id="loader">
+          <center><h1>Loading....</h1></center>
       </div>
-    </>
+    
   );
 }
 

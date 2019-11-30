@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 import { setCurrentUser } from '../../actions';
 import {Redirect} from 'react-router-dom';
 import "./question.css";
+import SpinnerPage from "../loader/Loader";
+
 
 class Questions extends Component{
     constructor(){
@@ -22,9 +24,9 @@ class Questions extends Component{
         this.checkCookie = this.checkCookie.bind(this);
     }
     
-    setCookie(cname,cvalue,exdays) {
+    setCookie(cname,cvalue) {
         var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        d.setTime(d.getTime() + 70000);
         var expires = "expires=" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
       }
@@ -75,7 +77,7 @@ class Questions extends Component{
                 text: "Cookie expired, executing once again!"
             });
             setTimeout(function(){return true;},3000);
-            this.setCookie("countDownTime", (new Date().getTime()+60000), 30);
+            this.setCookie("countDownTime", (new Date().getTime()+60000));
             this.checkCookie();  
           }
         }
@@ -145,7 +147,7 @@ class Questions extends Component{
     render(){
         const {questions} = this.state;
         if(this.state.text === "Time's Up") return <Redirect to='/categories'/>
-        if(questions.length == 0) return <div>loading</div>
+        if(questions.length == 0) return <SpinnerPage />
         else if(!this.props.level || !this.props.category) return <Redirect to='/dashboard'/>
         else {
             
