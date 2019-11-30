@@ -48,7 +48,9 @@ class Questions extends Component{
       }
       
       checkCookie() {
-        var user = this.getCookie("countDownTime");
+        var user = this.getCookie(this.props.category);
+        console.log("cookie",document.cookie);
+        // console.log("props",this.props);
         if (user > (new Date().getTime())) {
           var x = setInterval(() => {
     
@@ -77,7 +79,7 @@ class Questions extends Component{
                 text: "Cookie expired, executing once again!"
             });
             setTimeout(function(){return true;},3000);
-            this.setCookie("countDownTime", (new Date().getTime()+60000));
+            this.setCookie(this.props.category, (new Date().getTime()+60000));
             this.checkCookie();  
           }
         }
