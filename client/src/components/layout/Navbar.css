@@ -2,3 +2,16 @@
     background-color: rgba(0,0,0,0);
 }
 
+a{
+    font-weight: bold;
+    font-size: 120% !important;
+}
+
+.brand-logo{
+    font-size: 180% !important;
+}
+
+a:hover{
+    text-decoration: none !important;
+    color: black;
+}
