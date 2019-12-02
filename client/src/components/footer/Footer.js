@@ -1,10 +1,11 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faFacebook, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons'
+import { faInstagram, faFacebook, faGithub, faGoogle } from '@fortawesome/free-brands-svg-icons';
+import "./footer.css";
 
 function Footer(){
     return(
-        <footer class="page-footer black wrapper">
+        <footer id="footer" class="page-footer black wrapper">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">

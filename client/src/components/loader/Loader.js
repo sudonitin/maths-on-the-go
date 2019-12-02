@@ -5,7 +5,7 @@ const SpinnerPage = () => {
   return (
 
       <div id="loader">
-          <center><h1>Loading....</h1></center>
+          <center>Loading....</center>
       </div>
     
   );
