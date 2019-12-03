@@ -10,7 +10,7 @@ class Categories extends Component{
         super(props);
         var level;
         console.log(this.props.level);
-        if(this.props.level === 'level1') level = ["Piece of cake 🍰", "Addition", "Subtraction","Multiplication", "Division", "Modulo", "Surprise"]
+        if(this.props.level === 'level1') level = ["Piece of cake 🍰", "Addition", "Substraction","Multiplication", "Division", "Modulo", "Surprise"]
         else if(this.props.level === 'level2') level = ["Grapes 🍇", "AddSub", "AddMul","AddDiv", "AddMod", "Game of kids", "Surprise"]
         else if(this.props.level === 'level3') level = ["Banana 🍌", "MulSub", "DivSub","SubDivMul", "Brackets", "I am impossible", "Surprise"]
         else if(this.props.level === 'level4') level = ["Apple 🍎", "AddDivSub", "MulDivSub","SubDivMul", "Dare you", "You don't know maths", "Surprise"]

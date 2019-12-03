@@ -123,7 +123,7 @@ class Questions extends Component{
     }
 
     componentDidMount(){
-        const {level,category} = this.props;
+        var {level,category} = this.props;
         axios.get(`${URL}/${level}/${category.toLowerCase()}`,axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
             headers:{"Content-Type": "application/json"}
           })

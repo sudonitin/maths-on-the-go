@@ -6,7 +6,6 @@ import {withRouter} from 'react-router-dom'
 class Subcat extends Component{
     onClickItem(category){
         this.props.setCategory(category);
-        console.log(this.props.history);
         this.props.history.push('/questions');
       }
     render(){
