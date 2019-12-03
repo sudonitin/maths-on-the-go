@@ -4,10 +4,14 @@ import "./loader.css";
 const SpinnerPage = () => {
   return (
 
-      <div id="loader">
-          <center><h1>Loading....</h1></center>
+      <div id="loader" className="saving">
+          <center>
+            Loading <span>.</span><span>.</span><span>.</span>
+              {/* <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span> */}
+          </center>
       </div>
-    
   );
 }
 
