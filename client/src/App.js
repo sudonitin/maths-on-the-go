@@ -11,6 +11,7 @@ import Reset from "./components/forgotPassword/resetPassword";
 import Questions from './components/Questions/Questions'
 import Categories from "./components/Categories/Categories";
 import Loader from "./components/loader/Loader";
+import Congratulations from "./components/congratulations/Congratulations";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route exact path='/categories' component={Categories} />
           <Route exact path="/questions" component={Questions}/>
           <Route exact path="/loader" component={Loader}/>
+          <Route exact path="/congratulations" component={Congratulations}/>
           <Footer />
         </div>
       </Router>

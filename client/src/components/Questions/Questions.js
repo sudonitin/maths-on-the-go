@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import axios from 'axios';
 import URL from '../../url';
 import {connect} from 'react-redux'
-import { setCurrentUser } from '../../actions';
+import { setCurrentUser,setScore } from '../../actions';
 import {Redirect} from 'react-router-dom';
 import "./question.css";
 import SpinnerPage from "../loader/Loader";
@@ -101,6 +101,7 @@ class Questions extends Component{
         this.state.answers.map((answer,index) => {
             if(this.state.submittedAnswers[index] && this.state.submittedAnswers[index]===answer) score=score+5
         })
+        var currentScore = score;
         score+=this.props.user[this.props.level]
         console.log(score)
         axios.post(`${URL}/update/upscore`,{
@@ -115,7 +116,9 @@ class Questions extends Component{
               localStorage.setItem('user',JSON.stringify(res.data.user.value))
               console.log(localStorage.getItem('user'));
               this.props.setCurrentUser(res.data.user.value,localStorage.getItem('token'))
-
+              console.log(currentScore);
+              this.props.setScore(currentScore);
+              this.props.history.push('/congratulations');
           })
           .catch(err => {
               console.log(err.response.data)
@@ -158,7 +161,7 @@ class Questions extends Component{
                 <div className="card-panel row sticky" id="timer">
                     <h5>{this.state.text}</h5>
                 </div>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.onSubmit} autoComplete="off">
             {
                 questions.map((question,index) => {
                     return (
@@ -205,7 +208,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentUser : (user,token) => dispatch(setCurrentUser(user,token))
+        setCurrentUser : (user,token) => dispatch(setCurrentUser(user,token)),
+        setScore : (score) => dispatch(setScore(score))
     }
 }
 

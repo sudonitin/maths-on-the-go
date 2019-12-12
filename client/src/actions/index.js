@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY} from './types'
+import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY, SET_SCORE} from './types'
 import setAuthToken from '../components/setAuthToken';
 
 
@@ -11,7 +11,7 @@ export const setCurrentUser = (user,token) => dispatch => {
     user
     })
 }
- 
+
 export const setLevel = (level) => ({
     type:SET_LEVEL,
     level
@@ -27,3 +27,8 @@ export const logout = () => dispatch =>{
     dispatch(setCurrentUser({},null));
     dispatch(setLevel(null));
 }
+
+export const setScore = (score) => ({
+    type:SET_SCORE,
+    score
+})

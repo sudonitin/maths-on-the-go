@@ -1,4 +1,4 @@
-import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY} from '../actions/types';
+import {SET_CURRENT_USER,SET_LEVEL,SET_CATEGORY,SET_SCORE} from '../actions/types';
 const isEmpty = require('is-empty');
 
 
@@ -6,7 +6,8 @@ const initialState = {
     user:{},
     isAuthenticated:false,
     level:null,
-    category:null
+    category:null,
+    score:null
 }
 
 export default function(state = initialState,action){
@@ -28,6 +29,11 @@ export default function(state = initialState,action){
         return{
             ...state,
             category:action.category
+        }
+        case SET_SCORE:
+        return {
+            ...state,
+            score:action.score
         }
         default:
             return state;
