@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto',sans-serif;
+}
+
+.title{
+    font-weight: bolder;
+    color: #2e3b94;
+    font-size: 230%;
+}
+
+.content{
+    font-size: 150%;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 600px) {
+    .title{
+        font-size: 200%;
+    }
+    .content{
+        font-size: 130%;
+    }
+}
