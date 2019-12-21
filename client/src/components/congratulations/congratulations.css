@@ -10,4 +10,7 @@ body, html {
     .greeting{
      font-size: 250%;   
     }
+    .container{
+        padding-bottom: 10%;
+    }
 }

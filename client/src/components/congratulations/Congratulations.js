@@ -5,6 +5,7 @@ import {Redirect} from 'react-router-dom';
 import './congratulations.css';
 import Confetti from 'react-confetti';
 import { useWindowSize } from "./useWindowSize";
+import { Link } from 'react-router-dom';
 
 class Congratulations extends Component{
     componentWillUnmount(){
@@ -20,16 +21,16 @@ class Congratulations extends Component{
             return(
                 <div className='container'>
                     <Confetti
-                    width={width-3}
+                    width={width-15}
                     height={height}
                     />
                     <h2 className='greeting'>
-                        Congratulations!!! 🥳🎉🎊 <br></br> 
+                        Congratulations!!! 🥳🎉🎊 <br></br> <br></br> 
                         You scored {score} <br></br>
                         Your total score is {user[level]} <br></br>
                         Keep it up 🎖!!
-                        {/* Width = {width} */}
                     </h2>
+                    <h3 className='greeting'><Link to='/dashboard'>Back to dashboard 👈</Link></h3>
                 </div>
             )
         }

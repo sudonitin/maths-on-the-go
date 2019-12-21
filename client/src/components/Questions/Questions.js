@@ -26,7 +26,7 @@ class Questions extends Component{
     
     setCookie(cname,cvalue) {
         var d = new Date();
-        d.setTime(d.getTime() + 70000);
+        d.setTime(d.getTime() + 90000);
         var expires = "expires=" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
       }
@@ -58,7 +58,7 @@ class Questions extends Component{
               
             var distance = user - now;
               
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            var seconds = Math.floor(distance/ 1000);
             
             this.setState({
                text: "time left is "+seconds+"s"
@@ -79,7 +79,7 @@ class Questions extends Component{
                 text: "Cookie expired, executing once again!"
             });
             setTimeout(function(){return true;},3000);
-            this.setCookie(this.props.category, (new Date().getTime()+60000));
+            this.setCookie(this.props.category, (new Date().getTime()+90000));
             this.checkCookie();  
           }
         }
@@ -151,7 +151,7 @@ class Questions extends Component{
 
     render(){
         const {questions} = this.state;
-        if(this.state.text === "Time's Up") return <Redirect to='/categories'/>
+        if(this.state.text === "Time's Up") return <Redirect to='/congratulations'/>
         if(questions.length == 0) return <SpinnerPage />
         else if(!this.props.level || !this.props.category) return <Redirect to='/dashboard'/>
         else {
