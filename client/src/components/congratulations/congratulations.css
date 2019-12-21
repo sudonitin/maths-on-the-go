@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto',sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    .greeting{
+     font-size: 250%;   
+    }
+}

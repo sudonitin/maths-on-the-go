@@ -7,7 +7,9 @@ import * as serviceWorker from './serviceWorker';
 import { PersistGate } from 'redux-persist/integration/react'
 import {store,persistor} from './store'
 import Loader from './components/loader/Loader';
+import { supportReactDevTools } from 'react-universal-hooks';
 
+supportReactDevTools ({ active: process.env!=="production" });
 
 ReactDOM.render(
 <Provider store={store}>
