@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
 const CategoriesSchema = require('../../models/Categories');
 CategoriesSchema.plugin(random);
-const {users,levels} = require('../../connections/connections');
+const {levels} = require('../../connections/connections');
 const token = require('../../token/token');
 
 
@@ -13,7 +13,7 @@ const Substraction = levels.model('substractions',CategoriesSchema);
 const AdditionSubstraction = levels.model('additionSubstraction',CategoriesSchema);
 const Division = levels.model('divisions',CategoriesSchema);
 const Multiplication = levels.model('multiplications',CategoriesSchema);
-const Mix = levels.model('mix',CategoriesSchema);
+const Suprise = levels.model('surprise',CategoriesSchema);
 
 
 router.get('/addition',token.auth, (req,res)=> {
@@ -71,8 +71,8 @@ router.get('/multiplication',token.auth,(req,res)=> {
     })
 })
 
-router.get('/mix',token.auth,(req,res)=> {
-    Mix.findRandom({},{},{limit:10},(err,questions) => {
+router.get('/surprise',token.auth,(req,res)=> {
+    Suprise.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){

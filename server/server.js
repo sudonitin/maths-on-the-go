@@ -42,6 +42,8 @@ mongoose
 app.use('/api',users);
 const level1 = require('./routes/levels/levels1');
 app.use('/level1',level1);
+const level2 = require('./routes/levels/levels2');
+app.use('/level2',level2);
 const update = require('./routes/updatescore/update');
 app.use('/update',update);
 const tricks = require('./routes/tricks/mathtricks');

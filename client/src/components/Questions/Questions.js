@@ -63,12 +63,12 @@ class Questions extends Component{
             this.setState({
                text: "time left is "+seconds+"s"
             });
-            if (distance < 0) {
+            if (seconds === 0) {
               clearInterval(x);
               this.setState({
                   text: "Time's Up"
               });
-
+              //this.onSubmit()
             }
           }, 1000);
     
