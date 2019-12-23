@@ -68,7 +68,7 @@ class Questions extends Component{
               this.setState({
                   text: "Time's Up"
               });
-              //this.onSubmit()
+              this.calculateScore()
             }
           }, 1000);
     
@@ -94,9 +94,7 @@ class Questions extends Component{
         //console.log(this.state.submittedAnswers)
     }
     
-    
-    onSubmit = e => {
-        e.preventDefault();
+    calculateScore = () => {
         var score = 0;
         this.state.answers.map((answer,index) => {
             if(this.state.submittedAnswers[index] && this.state.submittedAnswers[index]===answer) score=score+5
@@ -125,6 +123,11 @@ class Questions extends Component{
           })
     }
 
+    onSubmit = e => {
+        e.preventDefault();
+        this.calculateScore()
+    }
+
     componentDidMount(){
         var {level,category} = this.props;
         axios.get(`${URL}/${level}/${category.toLowerCase()}`,axios.defaults.headers.common['authorization'] = localStorage.getItem('token'),{
@@ -151,7 +154,7 @@ class Questions extends Component{
 
     render(){
         const {questions} = this.state;
-        if(this.state.text === "Time's Up") return <Redirect to='/congratulations'/>
+        //if(this.state.text === "Time's Up") return <Redirect to='/congratulations'/>
         if(questions.length == 0) return <SpinnerPage />
         else if(!this.props.level || !this.props.category) return <Redirect to='/dashboard'/>
         else {
