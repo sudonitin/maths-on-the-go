@@ -4,20 +4,20 @@ const mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
 const CategoriesSchema = require('../../models/Categories');
 CategoriesSchema.plugin(random);
-const {levels2} = require('../../connections/connections');
+const {levels3} = require('../../connections/connections');
 const token = require('../../token/token');
 
 
-const Addmods = levels2.model('addmods',CategoriesSchema);
-const Addmuls = levels2.model('addmuls',CategoriesSchema);
-const Addsubs = levels2.model('addsubs',CategoriesSchema);
-const Adddivs = levels2.model('adddivs', CategoriesSchema);
-const Game = levels2.model('game of kids', CategoriesSchema);
-const Surprise = levels2.model('surprise', CategoriesSchema);
+const brackets = levels3.model('brackets',CategoriesSchema);
+const divsubs = levels3.model('divsubs',CategoriesSchema);
+const mulsubs = levels3.model('mulsubs',CategoriesSchema);
+const subdivmuls = levels3.model('subdivmuls', CategoriesSchema);
+const Game = levels3.model('i am possibles', CategoriesSchema);
+const Surprise = levels3.model('surprise', CategoriesSchema);
 
 
-router.get('/addmod',token.auth, (req,res)=> {
-    Addmods.findRandom({},{},{limit:10},(err,questions) => {
+router.get('/bracket',token.auth, (req,res)=> {
+    brackets.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -27,8 +27,8 @@ router.get('/addmod',token.auth, (req,res)=> {
     })
 })
 
-router.get('/addmul',token.auth, (req,res)=> {
-    Addmuls.findRandom({},{},{limit:10},(err,questions) => {
+router.get('/divsub',token.auth, (req,res)=> {
+    divsubs.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -38,8 +38,8 @@ router.get('/addmul',token.auth, (req,res)=> {
     })
 })
 
-router.get('/addsub',token.auth, (req,res)=> {
-    Addsubs.findRandom({},{},{limit:10},(err,questions) => {
+router.get('/mulsub',token.auth, (req,res)=> {
+    mulsubs.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -49,8 +49,8 @@ router.get('/addsub',token.auth, (req,res)=> {
     })
 })
 
-router.get('/adddiv',token.auth, (req,res)=> {
-    Adddivs.findRandom({},{},{limit:10},(err,questions) => {
+router.get('/subdivmul',token.auth, (req,res)=> {
+    subdivmuls.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
         questions.forEach(function(question){
@@ -60,7 +60,7 @@ router.get('/adddiv',token.auth, (req,res)=> {
     })
 })
 
-router.get('/gameofkids',token.auth, (req,res)=> {
+router.get('/iampossible',token.auth, (req,res)=> {
     Game.findRandom({},{},{limit:10},(err,questions) => {
         if(err) throw err;
         var quesMap = {};
