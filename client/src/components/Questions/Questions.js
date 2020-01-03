@@ -19,47 +19,13 @@ class Questions extends Component{
             add: 0,
             text: "" 
         };
-        this.setCookie = this.setCookie.bind(this);
-        this.getCookie = this.getCookie.bind(this);
         this.checkCookie = this.checkCookie.bind(this);
     }
-    
-    setCookie(cname,cvalue) {
-        var d = new Date();
-        d.setTime(d.getTime() + 90000);
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-      }
-      
-      getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-          }
-          if (c.indexOf(name) == 0) {
-            return Number(c.substring(name.length, c.length));
-          }
-        }
-        return "";
-      }
       
       checkCookie() {
-        var user = this.getCookie(this.props.category);
-        console.log("cookie",document.cookie);
-        // console.log("props",this.props);
-        if (user > (new Date().getTime())) {
+          var seconds = 120;
           var x = setInterval(() => {
-    
-            var now = new Date().getTime();
-              
-            var distance = user - now;
-              
-            var seconds = Math.floor(distance/ 1000);
-            
+            seconds = seconds - 1 ;
             this.setState({
                text: "time left is "+seconds+"s"
             });
@@ -71,18 +37,6 @@ class Questions extends Component{
               this.calculateScore()
             }
           }, 1000);
-    
-        }
-        else {  
-          if(user < (new Date().getTime())){
-            this.setState({
-                text: "Cookie expired, executing once again!"
-            });
-            setTimeout(function(){return true;},3000);
-            this.setCookie(this.props.category, (new Date().getTime()+90000));
-            this.checkCookie();  
-          }
-        }
       }
 
     handleAnswersChange = (index,event) => {
