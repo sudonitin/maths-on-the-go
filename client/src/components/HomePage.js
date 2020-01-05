@@ -4,6 +4,7 @@ import './homePage.css'
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
+import { connect } from 'react-redux';
 
 
 const slideLeft = keyframes`${slideInLeft}`;
@@ -41,15 +42,18 @@ class HomePage extends Component{
                     </div>
                 </SlideL>
                 <SlideR>
-                    <div className='divs'>
-                        <h3 className='title'>Ready to rock🤩?</h3>
-                        <p className='content'>Not a member yet? Hit it ➡ <Link to='/register'>Signup</Link></p>
-                        <p className='content'>Already a member? Hit it ➡ <Link to='/login'>login</Link></p>
-                    </div>
+                    
                 </SlideR>
             </section>
         )
     }
 }
 
-export default HomePage;
+mapStateToProps = (state) => {
+    const {isAuthenticated} = state
+    return {isAuthenticated}
+}
+
+export default connect(
+    mapStateToProps
+  )(HomePage);
