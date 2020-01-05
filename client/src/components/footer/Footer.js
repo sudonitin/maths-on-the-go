@@ -27,8 +27,8 @@ function Footer(){
           <div class="container">
             © 2019 Copyright MTG
             <h6 class="white-text" style={{textAlign: "right"}}>Our Creators</h6>
-            <a class="grey-text text-lighten-4 right" href="#!">Nitin</a>
-            <a class="grey-text text-lighten-4 right" href="#!">Reha| </a>
+            <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/nitin-sahu-globefire/">Nitin</a>
+            <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/reha-santiago-994467152/">Reha| </a>
           </div>
         </div>
       </footer>
