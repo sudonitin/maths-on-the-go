@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from './components/HomePage';
+import ContactUs from './components/ContactUs';
+import AboutUs from './components/AboutUs';
 import Footer from "./components/footer/Footer";
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/sign_in_out/Register";
@@ -20,6 +22,8 @@ class App extends Component {
         <div className="App wrapper">
           <Route path="/" component={Navbar} />
           <Route exact path="/" component={HomePage}/>
+          <Route exact path="/contactus" component={ContactUs}/>
+          <Route exact path="/aboutus" component={AboutUs}/>
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/dashboard" component={Graph} />

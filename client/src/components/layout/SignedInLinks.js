@@ -8,9 +8,11 @@ import "./Navbar.css";
 const SignedInLinks = (props) => {
     return (
         <>
-        <li className="aher sidenav-close"><Link to='/'>Home Page</Link></li>
-        <li className="aher sidenav-close"><Link to='/dashboard'>Dashboard</Link></li>
-        <li className="aher sidenav-close"><Link to='/login' onClick={props.signOut}>Logout</Link></li>
+        <li className="aher sidenav-close"><Link className="navlink" to='/'>Home Page</Link></li>
+        <li className="aher sidenav-close"><Link className="navlink" to='/dashboard'>Dashboard</Link></li>
+        <li className="aher sidenav-close"><Link className="navlink" to='/aboutus'>About Us</Link></li>
+        <li className="aher sidenav-close"><Link className="navlink" to='/contactus'>Contact Us</Link></li>
+        <li className="aher sidenav-close"><Link className="navlink" to='/login' onClick={props.signOut}>Logout</Link></li>
         </>
     )
 }

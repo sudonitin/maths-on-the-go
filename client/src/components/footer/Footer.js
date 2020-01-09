@@ -5,30 +5,29 @@ import "./footer.css";
 
 function Footer(){
     return(
-        <footer id="footer" class="page-footer black wrapper">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text" id="brand">MTG</h5>
-              <p class="grey-text text-lighten-4">A fun game for all.</p>
+        <footer id="footer" className="page-footer black wrapper">
+        <div className="container">
+          <div className="row">
+            <div className="col l6 s12">
+              <h5 className="white-text" id="brand">MTG</h5>
+              <p className="grey-text text-lighten-4">A fun game for all.</p>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Follow us</h5>
-              <a class="grey-text text-lighten-3" id="fb" href="#!"><FontAwesomeIcon icon={faFacebook} size="2x" /> </a>
-              <a class="grey-text text-lighten-3" id="insta" href="#!"><FontAwesomeIcon icon={faInstagram} size="2x" /> </a>
-              <a class="grey-text text-lighten-3" id="yt" href="#!"><FontAwesomeIcon icon={faYoutube} size="2x" /> </a>
-              <a class="grey-text text-lighten-3" id="git" href="#!"><FontAwesomeIcon icon={faGithub} size="2x" /> </a>
-              <a class="grey-text text-lighten-3" id="in" href="#!"><FontAwesomeIcon icon={faLinkedinIn} size="2x" /> </a>
-              <a class="grey-text text-lighten-3" id="twitter" href="#!"><FontAwesomeIcon icon={faTwitter} size="2x" /> </a>
+            <div className="col l4 offset-l2 s12">
+              <h5 className="white-text">Follow us</h5>
+              <a className="grey-text text-lighten-3 icons" id="fb" href="#!"><FontAwesomeIcon icon={faFacebook} /> </a>
+              <a className="grey-text text-lighten-3 icons" id="insta" href="#!"><FontAwesomeIcon icon={faInstagram} /> </a>
+              <a className="grey-text text-lighten-3 icons" id="yt" href="#!"><FontAwesomeIcon icon={faYoutube} /> </a>
+              <a className="grey-text text-lighten-3 icons" id="in" href="#!"><FontAwesomeIcon icon={faLinkedinIn} /> </a>
+              <a className="grey-text text-lighten-3 icons" id="twitter" href="#!"><FontAwesomeIcon icon={faTwitter} /> </a>
             </div>
           </div>
         </div>
-        <div class="footer-copyright">
-          <div class="container">
+        <div className="footer-copyright">
+          <div className="container">
             © 2019 Copyright MTG
-            <h6 class="white-text" style={{textAlign: "right"}}>Our Creators</h6>
-            <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/nitin-sahu-globefire/">Nitin</a>
-            <a class="grey-text text-lighten-4 right" href="https://www.linkedin.com/in/reha-santiago-994467152/">Reha| </a>
+            <h6 className="white-text" style={{textAlign: "right"}}>Our Creators</h6>
+            <a className="grey-text text-lighten-4 right cr" href="https://github.com/globefire">Nitin</a>
+            <a className="grey-text text-lighten-4 right cr" href="https://github.com/rehasantiago">Reha| </a>
           </div>
         </div>
       </footer>

@@ -19,10 +19,10 @@ class Navbar extends Component{
     const links = isEmpty(JSON.parse(localStorage.getItem('user')))?<SignedOutLinks/>:<SignedInLinks/>;
     return (
       <div>
-        <nav className="nav-wrapper blue fixed" style={{backgroundColor: "rgba(0,0,0,0)"}}>
+        <nav className="nav-wrapper navlink blue fixed" style={{backgroundColor: "rgba(0,0,0,0)"}}>
           <div className="container">
-            <Link className="brand-logo">MTG</Link>
-            <Link className="sidenav-trigger" data-target="mobile-links"><i className="material-icons">menu</i></Link>
+            <Link to='/' className="brand-logo">MTG</Link>
+            <Link className="sidenav-trigger navlink" data-target="mobile-links"><i className="material-icons">menu</i></Link>
               <ul className="right hide-on-med-and-down">
                 {links}
               </ul>

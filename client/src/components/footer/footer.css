@@ -5,33 +5,28 @@
     margin-top:5%;
   }
 
-.grey-text:hover{
+.icons{
+    font-size: 3vw !important;
+}
+
+.cr:hover{
     text-decoration: none;
-    color: #005dff !important;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 #brand{
     font-weight: bold;
     font-size: 180% !important;    
 }
-/* 
-#twitter:hover{
-    color: #00B6F1 !important;
+
+@media only screen and (max-width: 600px) {
+    .icons{
+        font-size: 6.3vw !important;
+    }
 }
 
-#fb:hover{
-    color:#3B5998 !important;
+ 
+#twitter:hover, #fb:hover, #in:hover, #yt:hover,#insta:hover{
+    color: #2196F3 !important;
+    text-decoration: none;
 }
-
-#in:hover{
-    color:#04669A !important;
-}
-
-#yt:hover{
-    color:#C31A1E !important;
-}
-
-#insta:hover{
-    color: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%) !important;
-} */
