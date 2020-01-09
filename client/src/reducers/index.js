@@ -19,13 +19,13 @@ export default function(state = initialState,action){
             user:action.user
         }
         case SET_LEVEL:
-        console.log(action.level);
+        //console.log(action.level);
         return{
             ...state,
             level:action.level
         }
         case SET_CATEGORY:
-        console.log(action.category)
+        //console.log(action.category)
         return{
             ...state,
             category:action.category

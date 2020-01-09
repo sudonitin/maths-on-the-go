@@ -27,12 +27,12 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    console.log(newUser);
+    //console.log(newUser);
     axios.post(`${URL}/api/register`,newUser,{
       headers:{"Content-Type": "application/json"}
     })
     .then(res => {
-      console.log(res);
+      //console.log(res);
       if(res.data.success){
         this.setState({
           name:"",
@@ -44,9 +44,9 @@ class Register extends Component {
         //console.log(token);
         localStorage.setItem('token',token);
         localStorage.setItem('user',JSON.stringify(res.data.user));
-        console.log(localStorage.getItem('user'));
+        //console.log(localStorage.getItem('user'));
         this.props.setCurrentUser(res.data.user,res.data.token);
-        console.log(this.props);
+        //console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page 
       }
     })
@@ -54,7 +54,7 @@ class Register extends Component {
       this.setState({
         errors:err.response.data
       })
-      console.log(this.state.errors);
+      //console.log(this.state.errors);
     })
   };
   render() {

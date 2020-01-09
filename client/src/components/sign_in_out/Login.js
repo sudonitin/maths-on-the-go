@@ -22,7 +22,7 @@ class Login extends Component {
   //   console.log(this.props.user);
   // }
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    //console.log(nextProps);
   }
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
@@ -38,7 +38,7 @@ class Login extends Component {
       headers:{"Content-Type": "application/json"}
     })
     .then(res => { 
-      console.log(res);
+      //console.log(res);
       if(res.data.success){
         //console.log(token);
         this.setState({
@@ -48,9 +48,9 @@ class Login extends Component {
         localStorage.setItem('token',res.data.token);
         localStorage.setItem('user',JSON.stringify(res.data.user));
         //console.log(res.data.user);
-        console.log(localStorage.getItem('user'));
+        //console.log(localStorage.getItem('user'));
         this.props.setCurrentUser(res.data.user,res.data.token);
-        console.log(this.props);
+        //console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page
       }
 
@@ -60,7 +60,7 @@ class Login extends Component {
       this.setState({
         errors:err.response.data
       })
-      console.log(this.state.errors);
+      //console.log(this.state.errors);
     })
     
   };

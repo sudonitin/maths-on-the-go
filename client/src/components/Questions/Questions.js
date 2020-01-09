@@ -55,7 +55,7 @@ class Questions extends Component{
         })
         var currentScore = score;
         score+=this.props.user[this.props.level]
-        console.log(score)
+        //console.log(score)
         axios.post(`${URL}/update/upscore`,{
             email:JSON.parse(localStorage.getItem('user')).email,
             level:this.props.level,
@@ -64,16 +64,16 @@ class Questions extends Component{
             headers:{"Content-Type": "application/json"}
           })
           .then(res => {
-              console.log(res.data.user.value)
+              //console.log(res.data.user.value)
               localStorage.setItem('user',JSON.stringify(res.data.user.value))
-              console.log(localStorage.getItem('user'));
+              //console.log(localStorage.getItem('user'));
               this.props.setCurrentUser(res.data.user.value,localStorage.getItem('token'))
-              console.log(currentScore);
+              //console.log(currentScore);
               this.props.setScore(currentScore);
               this.props.history.push('/congratulations');
           })
           .catch(err => {
-              console.log(err.response.data)
+              //console.log(err.response.data)
           })
     }
 
@@ -100,7 +100,7 @@ class Questions extends Component{
               })
           })
           .catch(err => {
-              console.log(err.response.data);
+              //console.log(err.response.data);
           })
           this.checkCookie();
     }

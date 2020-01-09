@@ -17,18 +17,18 @@ class Reset extends React.Component{
           resetToken: this.props.match.params.token,
           success: false
         };
-        console.log(this.props.match.params.token);
+        //console.log(this.props.match.params.token);
       }
 
       async componentDidMount() {
-        console.log(this.props.match.params.token);
+        //console.log(this.props.match.params.token);
         await axios.post(`${URL}/verify/token`, {
           resetToken:this.props.match.params.token
         },{
           headers:{"Content-Type": "application/json"}
         })
         .then(response => {
-            console.log(response);
+            //console.log(response);
             if (response.data.message === 'all ok'){
                 this.setState({
                     email: response.data.email,
@@ -45,7 +45,7 @@ class Reset extends React.Component{
                 this.props.history.push('/forgot')
             }
         }).catch(err => {
-            console.log(err.response.data);
+            //console.log(err.response.data);
             alert('INVALID LINK!!!!');
             this.props.history.push('/forgot')
         });
@@ -63,7 +63,7 @@ class Reset extends React.Component{
             headers:{"Content-Type": "application/json"}
           })
           .then(response => {
-            console.log(response.data);
+            //console.log(response.data);
             if(response.data.message === "updated"){
               this.setState({
                 updated: true,
@@ -82,7 +82,7 @@ class Reset extends React.Component{
             }
           })
           .catch(err => {
-            console.log(err.data)
+            //console.log(err.data)
             alert('INVALID LINK!!!!');
             this.props.history.push('/forgot')
           })

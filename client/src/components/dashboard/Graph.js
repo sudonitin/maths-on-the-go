@@ -25,7 +25,7 @@ const SlideR = styled.div`
 
 class Graph extends React.Component{
     clickItem(level){
-      console.log(level)
+      //console.log(level)
       this.props.setLevel(level);
       this.props.history.push('/categories');
     }
@@ -33,7 +33,7 @@ class Graph extends React.Component{
       //localStorage.clear();
       //console.log(this.props.user); 
       const user = JSON.parse(localStorage.getItem('user'));
-      console.log(user);
+      //console.log(user);
       if(isEmpty(user)) return <Redirect to='/login'/>
         return (
             <div className="container">
@@ -52,7 +52,7 @@ class Graph extends React.Component{
 
 function mapStateToProps(state){
   const {user} = state;  
-  console.log(user);
+  //console.log(user);
   return {user};
 }
 
