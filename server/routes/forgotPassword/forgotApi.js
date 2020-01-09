@@ -19,35 +19,17 @@ router.post("/check", (req, res) => {
       }// Check password
       else{
          const token = crypto.randomBytes(20).toString('hex');
-          console.log(token);
+          // console.log(token);
           users.collection('users').updateMany({email: email}, {$set:{resetToken : token,
             resetTokenTime: (Date.now() + 720000)}}, function(err,user){});
-            console.log("now ",Date.now());
-            console.log("inserted ",(Date.now()+720000));
-          const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-              user: `geminiautomobilesnerul@gmail.com`,
-              pass: `i like it`,
-            },
-          });
-
-          const mailOptions = {
-            from : 'Maths On the go',
-            to: `${email}`,
-            subject: `Reset Password link`,
-            text: `Use the below link to change your password\n` + `http://localhost:3000/reset/${token}\n\n` + `Do Not Share this link with anyone else.\n` + `NOTE: This link expire in an hour`
+            // console.log("now ",Date.now());
+            // console.log("inserted ",(Date.now()+720000));
+          
+          const s = {
+            to_email: email,
+            reset_link: 'https://mathstest1.herokuapp.com/reset/'+token //use localhost here
           };
-
-          transporter.sendMail(mailOptions, function(err, response) {
-            if (err){
-              console.error('there was an error ', err);
-            }
-            else{
-              console.log('the response is ', response);
-              res.status(200).json('recover mail sent');
-            }
-          });
+          res.status(200).send(s)
         }
       });
 });

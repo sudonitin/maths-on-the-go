@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import Loader from '../loader/Loader';
+import emailjs from 'emailjs-com';
 
 
 class Forgot extends React.Component{
@@ -28,12 +29,19 @@ class Forgot extends React.Component{
         loading:true,
         email:""
     })
-    //console.log(userData);
+    // console.log(userData);
     axios.post(`${URL}/forgot/check`,userData,{
         headers:{"Content-Type": "application/json"}
     })
     .then(res => { 
-        //console.log(res);
+        // console.log(res);
+        emailjs.send('gmail', 'secret-id', res.data, 'secret-id')
+        .then((result) => {
+        //   console.log(res.data);
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
         this.setState({success:true,loading:false});
     })
     .catch(err => {
@@ -42,7 +50,7 @@ class Forgot extends React.Component{
         this.setState({
         errors:err.response.data
         })
-        //console.log(this.state.errors);
+        console.log(this.state.errors);
     })
     };
     render(){
