@@ -28,7 +28,7 @@ function Level(props){
     }
     else{
         return(
-            <div className="card-panel row score">
+            <div className="card-panel row score" onClick={props.clickItem}>
                 <div className="col">
                     <span className={name}>
                         <h5>{props.content}</h5>
