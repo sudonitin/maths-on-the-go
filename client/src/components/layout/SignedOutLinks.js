@@ -5,10 +5,10 @@ import "./Navbar.css";
 const SignedOutLinks = () => {
     return (
         <>
-        <li className="aher"><Link to='/'>About Us</Link></li>
-        <li className="aher"><Link to='/'>Contact Us</Link></li>
-        <li className="aher"><Link to='/login'>Login</Link></li>
-        <li className="aher"><Link to='/register'>Register</Link></li>
+        <li className="aher sidenav-close"><Link to='/'>About Us</Link></li>
+        <li className="aher sidenav-close"><Link to='/'>Contact Us</Link></li>
+        <li className="aher sidenav-close"><Link to='/login'>Login</Link></li>
+        <li className="aher sidenav-close"><Link to='/register'>Register</Link></li>
         </>
     )
 }
