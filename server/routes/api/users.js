@@ -43,8 +43,8 @@ router.post('/register',(req,res) => {
                     jwt.sign(payload,
                       keys.secretOrKey,
                       {
-                      expiresIn: '48h',
-                      algorithm:'HS384' // 1 year in seconds
+                      expiresIn: 31556926,
+                      algorithm:'HS384' 
                       },
                       (err,token) => {
                         if(err) return res.json(err);
@@ -89,8 +89,8 @@ router.post("/login", (req, res) => {
             payload,
             keys.secretOrKey,
             {
-              expiresIn: '48h',
-              algorithm:'HS384' // 1 year in seconds
+              expiresIn: 31556926,// 1 year in seconds
+              algorithm:'HS384' 
             },
             (err, token) => {
               res.json({
