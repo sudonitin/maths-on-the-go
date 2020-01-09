@@ -17,11 +17,28 @@ body, html {
     font-weight: 500;
 }
 
+img{
+    margin-top: 10% !important;
+    max-width: 55% !important;
+}
+
+.links:hover{
+    text-decoration: none !important;
+    color: purple !important;
+}
+
 @media only screen and (max-width: 600px) {
     .title{
         font-size: 200%;
     }
     .content{
         font-size: 130%;
+    }
+    img{
+        margin-top: 25% !important;
+        max-width: 100% !important;
+    }
+    .person{
+        font-size: 3vw !important;
     }
 }
