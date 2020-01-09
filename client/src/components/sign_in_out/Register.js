@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from 'react-redux';
 import {setCurrentUser} from '../../actions'
 import propTypes from 'prop-types';
+import emailjs from 'emailjs-com';
 
 class Register extends Component {
   constructor() {
@@ -27,13 +28,24 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    //console.log(newUser);
+    // console.log('not yet',newUser);
     axios.post(`${URL}/api/register`,newUser,{
       headers:{"Content-Type": "application/json"}
     })
     .then(res => {
-      //console.log(res);
+      // console.log(res);
       if(res.data.success){
+        const emailParams = {
+          to_name: this.state.name,
+          to_email: this.state.email
+        };
+        emailjs.send('gmail', 'secret-id', emailParams, 'secret-id')
+        .then((result) => {
+          // console.log(emailParams);
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
         this.setState({
           name:"",
           email:"",
@@ -44,9 +56,9 @@ class Register extends Component {
         //console.log(token);
         localStorage.setItem('token',token);
         localStorage.setItem('user',JSON.stringify(res.data.user));
-        //console.log(localStorage.getItem('user'));
+        // console.log(localStorage.getItem('user'));
         this.props.setCurrentUser(res.data.user,res.data.token);
-        //console.log(this.props);
+        // console.log(this.props);
         this.props.history.push('/dashboard');//redirect to home page 
       }
     })
@@ -54,7 +66,7 @@ class Register extends Component {
       this.setState({
         errors:err.response.data
       })
-      //console.log(this.state.errors);
+      console.log(this.state.errors);
     })
   };
   render() {
