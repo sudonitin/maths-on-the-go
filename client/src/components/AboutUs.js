@@ -30,7 +30,7 @@ class AboutUs extends Component{
                         </div>
                         <div className='col' style={{textAlign: "right"}}>
                         <h3 className='title'>Reha Santiago</h3>
-                        <p className='content'>Hello, My name is Reha Santiago. I'm an engineering student who always tries to learn and explore different things. I love to plan my work and then proceed accordingly known as a good time keeper. You can find me on</p>
+                        <p className='content'>Hello, My name is Reha Santiago. I'm an engineering student who always tries to learn and explore different things. I love to plan my work and then proceed accordingly known as a good time keeper. You can find me on <a href="https://www.linkedin.com/in/reha-santiago-994467152/">Linkedin</a>, <a href="https://www.github.com/rehasantiago/">Github</a>.</p>
                         </div>
                         
                     </div>
