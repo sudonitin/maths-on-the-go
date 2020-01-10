@@ -5,6 +5,7 @@ import styled, { keyframes } from 'styled-components';
 import { slideInLeft,slideInRight } from 'react-animations';
 import { connect } from 'react-redux';
 import nitin from './circle-cropped-nitin.png';
+import reha from './circle-cropped-reha.png';
 
 const slideLeft = keyframes`${slideInLeft}`;
 
@@ -24,10 +25,12 @@ class AboutUs extends Component{
             <div className='container'>
                 <SlideL>
                     <div className='person row'>
-                        <div className='col img'></div>
+                        <div className='col img'>
+                            <img src={reha} className="responsive-img" />
+                        </div>
                         <div className='col' style={{textAlign: "right"}}>
                         <h3 className='title'>Reha Santiago</h3>
-                        <p className='content'>Bio here</p>
+                        <p className='content'>Hello, My name is Reha Santiago. I'm an engineering student who always tries to learn and explore different things. I love to plan my work and then proceed accordingly known as a good time keeper. You can find me on</p>
                         </div>
                         
                     </div>
